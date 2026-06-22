@@ -1,0 +1,888 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  ArrowRight,
+  Database,
+  Megaphone,
+  Search,
+  Code2,
+  Palette,
+  Workflow,
+  TrendingUp,
+  CheckCircle2,
+  Sparkles,
+  Globe,
+  ShieldCheck,
+  Rocket,
+  Star,
+  Building2,
+  Users,
+  BarChart3,
+} from "lucide-react";
+import { SiteLayout } from "@/components/layout/SiteLayout";
+import { Section, SectionTitle } from "@/components/layout/Section";
+import { SITE } from "@/lib/site";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title:
+          "Business Genie Consulting — ERP, HR & Digital Marketing Solutions",
+      },
+      {
+        name: "description",
+        content:
+          "Professional ERP, HR automation and digital marketing solutions for growing businesses. Automate operations, improve reporting and scale with smart systems.",
+      },
+      { property: "og:title", content: "Business Genie Consulting" },
+      {
+        property: "og:description",
+        content:
+          "Smart solutions for ERP, HR automation and digital marketing growth.",
+      },
+    ],
+  }),
+  component: Home,
+});
+
+const services = [
+  {
+    icon: Database,
+    title: "ERP Implementation",
+    desc: "Complete ERP setup for accounts, inventory, HR, sales, purchase, production & reporting.",
+    to: "/erp-solutions",
+    color: "orange",
+  },
+  {
+    icon: Workflow,
+    title: "HR Automation",
+    desc: "Employee onboarding, billing and operations.",
+    to: "/HR",
+    color: "orange",
+  },
+  {
+    icon: Megaphone,
+    title: "Digital Marketing",
+    desc: "Performance-driven campaigns that generate leads, grow brand visibility and online sales.",
+    to: "/digital-marketing",
+    color: "orange",
+  },
+    {
+    icon: Code2,
+    title: "Web Development",
+    desc: "Modern websites, platforms, CMS systems and custom web solutions that convert.",
+    to: "/web-development",
+    color: "orange",
+  },
+  
+  {
+    icon: Search,
+    title: "SEO Services",
+    desc: "Technical SEO, on-page, local SEO and organic growth that compounds over time.",
+    to: "/seo",
+    color: "orange",
+  },
+
+  {
+    icon: Palette,
+    title: "UI/UX Design",
+    desc: "Beautiful, conversion-focused interfaces for web, mobile, dashboards and SaaS.",
+    to: "/ui-ux",
+    color: "orange",
+  },
+];
+
+const stats = [
+  { v: 200, suffix: "+", label: "Projects Delivered" },
+  { v: 12, suffix: "+", label: "Industries Served" },
+  { v: 2, suffix: "", label: "Global Offices" },
+  { v: 99, suffix: "%", label: "Client Retention" },
+];
+
+function useCount(target: number, active: boolean) {
+  const [v, setV] = useState(0);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const dur = 1400;
+    const start = performance.now();
+    let raf = 0;
+
+    const tick = (t: number) => {
+      const p = Math.min((t - start) / dur, 1);
+      setV(Math.floor(p * target));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, target]);
+
+  return v;
+}
+
+function Counter({
+  to,
+  suffix,
+  label,
+}: {
+  to: number;
+  suffix: string;
+  label: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const obs = new IntersectionObserver(
+      ([e]) => e.isIntersecting && setActive(true),
+      { threshold: 0.4 }
+    );
+
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  const v = useCount(to, active);
+
+  return (
+    <div ref={ref} className="text-center">
+      <div className="text-4xl md:text-5xl font-bold text-gradient-orange">
+        {v}
+        {suffix}
+      </div>
+      <div className="mt-2 text-sm text-white/65">{label}</div>
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-16 bg-[#050505]">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="h-full w-full object-cover opacity-60 scale-105"
+        >
+          {/* YAHAN AAPKA NAYA CLOUDINARY LINK LAG GAYA HAI */}
+          <source src="https://res.cloudinary.com/djry1d68x/video/upload/hero-bg_uivghf.mp4" type="video/mp4" />
+        </video>
+
+        <div className="absolute inset-0 bg-[#050505]/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-[#050505]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505]" />
+      </div>
+
+      {/* Slow Orange Glow */}
+      <motion.div
+        animate={{
+          x: [0, 35, 0],
+          y: [0, -25, 0],
+          scale: [1, 1.08, 1],
+        }}
+        transition={{
+          duration: 14,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-20 -left-24 h-[420px] w-[420px] rounded-full bg-[var(--brand-orange)]/20 blur-[145px]"
+      />
+
+      <motion.div
+        animate={{
+          x: [0, -35, 0],
+          y: [0, 25, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 16,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-0 right-0 h-[460px] w-[460px] rounded-full bg-[var(--brand-orange)]/12 blur-[160px]"
+      />
+
+      {/* Soft Grid */}
+      <div
+        className="absolute inset-0 opacity-[0.045]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px)",
+          backgroundSize: "82px 82px",
+        }}
+      />
+
+      <div className="relative container-x grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+        {/* ... baqi ka sara inner code pehle jaisa he same rahega ... */}
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/80 hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/50 transition-all duration-300 mb-6"
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            Business Automation Partner
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.75 }}
+            className="max-w-4xl text-[34px] sm:text-[42px] md:text-[52px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.12] tracking-[-0.025em] text-white"
+          >
+            Smart Solutions for{" "}
+            <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+              ERP
+            </span>
+            ,{" "}
+            <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+              HR
+            </span>{" "}
+            and{" "}
+            <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+              Digital Marketing
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.65 }}
+            className="mt-6 text-sm sm:text-base md:text-lg text-white/70 max-w-2xl leading-relaxed"
+          >
+            Business Genie Consulting helps companies manage operations,
+            automate HR, implement ERP systems, improve reporting and grow
+            through performance-focused digital marketing.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.42, duration: 0.65 }}
+            className="mt-8 flex flex-wrap gap-3"
+          >
+            <Link
+              to="/contact"
+              className="btn-shine inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-orange text-black font-semibold glow-orange hover:scale-[1.03] transition-transform"
+            >
+              Get Free Consultation
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/60 hover:bg-white/5 transition-all duration-300"
+            >
+              Explore services
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.58, duration: 0.65 }}
+            className="mt-9 grid sm:grid-cols-3 gap-3 max-w-2xl"
+          >
+            {[
+              ["ERP Systems", "Accounts, inventory, sales & reporting"],
+              ["HR Automation", "Payroll, attendance & employee records"],
+              ["Digital Marketing", "SEO, ads, leads & online growth"],
+            ].map(([title, text]) => (
+              <div
+                key={title}
+                className="group rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 backdrop-blur-md hover:border-[var(--brand-orange)]/60 hover:bg-white/[0.07] transition-all duration-300"
+              >
+                <div className="text-sm font-semibold text-white group-hover:text-[var(--brand-orange)] transition-colors duration-300">
+                  {title}
+                </div>
+                <div className="mt-1 text-xs leading-relaxed text-white/55">
+                  {text}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.72, duration: 0.65 }}
+            className="mt-8 flex flex-wrap gap-5 text-sm text-white/65"
+          >
+            {[
+              "Clean Implementation",
+              "Professional Reporting",
+              "Ongoing Support",
+            ].map((item) => (
+              <div
+                key={item}
+                className="group flex items-center gap-2 hover:text-[var(--brand-orange)] transition-colors duration-300"
+              >
+                <CheckCircle2 className="h-4 w-4 text-white/70 group-hover:text-[var(--brand-orange)] transition-colors duration-300" />
+                {item}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Right Side Cards */}
+        <div className="relative h-[520px] hidden lg:block">
+          <motion.div
+            initial={{ opacity: 0, x: 45 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.35, duration: 0.65 }}
+            className="absolute top-0 right-0 w-80 rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <div className="text-xs text-white/50 uppercase tracking-wider">
+                  ERP Control
+                </div>
+                <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
+                  Business Dashboard
+                </div>
+              </div>
+              <div className="h-2.5 w-2.5 rounded-full bg-[var(--brand-orange)] animate-pulse" />
+            </div>
+
+            <div className="text-4xl font-bold text-white">$284,910</div>
+            <div className="text-xs text-[var(--brand-orange)] mt-1">
+              ▲ 24.6% monthly growth
+            </div>
+
+            <div className="mt-5 flex items-end gap-1.5 h-20">
+              {[42, 66, 52, 78, 61, 92, 74, 88].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-t bg-gradient-orange"
+                  style={{ height: `${h}%` }}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.65 }}
+            className="absolute top-48 left-0 w-72 rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
+            style={{ animationDelay: "1s" }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-orange text-black">
+                <Users className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
+                  HR Automation
+                </div>
+                <div className="text-xs text-white/55">
+                  Payroll, attendance & employee records
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+              {[
+                ["Staff", "250+"],
+                ["Payroll", "Auto"],
+                ["Reports", "Live"],
+              ].map(([k, v]) => (
+                <div key={k} className="bg-white/5 rounded-lg py-2">
+                  <div className="text-[10px] text-white/50">{k}</div>
+                  <div className="text-sm font-bold text-[var(--brand-orange)]">
+                    {v}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.72, duration: 0.65 }}
+            className="absolute bottom-0 right-8 w-72 rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
+            style={{ animationDelay: "2s" }}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs text-white/50 uppercase tracking-wider">
+                  Marketing Growth
+                </div>
+                <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
+                  Digital Performance
+                </div>
+              </div>
+              <TrendingUp className="h-5 w-5 text-[var(--brand-orange)]" />
+            </div>
+
+            <div className="mt-4 text-5xl font-bold text-white">
+              4.8<span className="text-lg text-white/45">x</span>
+            </div>
+
+            <div className="mt-4 h-2.5 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-orange w-[88%]" />
+            </div>
+
+            <div className="mt-3 text-[11px] text-white/55">
+              SEO • Paid Ads • Leads • Conversion Tracking
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.15 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-xs flex flex-col items-center gap-2"
+      >
+        <span className="hover:text-[var(--brand-orange)] transition-colors duration-300">
+          Scroll
+        </span>
+        <div className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+      </motion.div>
+    </section>
+  );
+}
+
+function Home() {
+  return (
+    <SiteLayout>
+      <Hero />
+
+      <Section>
+        <div className="container-x grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 2xl:gap-16 items-center">
+          {/* Left Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative w-full"
+          >
+            <motion.div
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="group relative w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10"
+            >
+              <img
+                src="/business-automation.jpg"
+                alt="ERP, HR and Digital Marketing Automation"
+                className="h-[300px] sm:h-[380px] md:h-[440px] lg:h-[520px] xl:h-[560px] 2xl:h-[620px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-transparent" />
+
+              <div className="absolute left-5 right-5 bottom-5 sm:left-7 sm:right-7 sm:bottom-7">
+                <div className="inline-flex rounded-full bg-[var(--brand-orange)] px-4 py-1.5 text-[11px] sm:text-xs font-semibold text-black">
+                  ERP • HR • Digital Marketing
+                </div>
+
+                <h3 className="mt-4 max-w-md text-xl sm:text-2xl lg:text-3xl font-semibold leading-tight text-white">
+                  Smart systems for modern business growth
+                </h3>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="w-full max-w-2xl lg:max-w-none"
+          >
+            <div className="text-[11px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.25em] text-[var(--brand-orange)] mb-3 sm:mb-4">
+              Trusted Growth Partner
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[62px] font-semibold leading-[1.12] tracking-[-0.025em] text-white">
+              Build a smarter business with{" "}
+              <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+                ERP
+              </span>
+              ,{" "}
+              <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+                HR
+              </span>{" "}
+              and{" "}
+              <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+                Digital Marketing
+              </span>
+            </h2>
+
+            <div className="mt-5 sm:mt-6 space-y-4 text-sm sm:text-base md:text-lg 2xl:text-xl leading-relaxed text-white/70">
+              <p>
+                Business Genie Consulting helps companies move from scattered
+                manual processes to structured, automated and scalable digital
+                systems.
+              </p>
+
+              <p>
+                We combine ERP implementation, HR automation, digital marketing,
+                SEO, web development, UI/UX design and business process
+                optimization to help businesses grow with clarity and control.
+              </p>
+            </div>
+
+            <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                "ERP Implementation",
+                "HR Automation",
+                "Digital Marketing",
+                "SEO & Web Growth",
+                "Reporting Dashboards",
+              ].map((item) => (
+                <motion.div
+                  key={item}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.25 }}
+                  className="group flex items-center gap-3 text-sm sm:text-[15px] text-white/75 hover:text-[var(--brand-orange)] transition-colors duration-300"
+                >
+                  <CheckCircle2 className="h-4 w-4 text-white/55 group-hover:text-[var(--brand-orange)] transition-colors duration-300" />
+                  {item}
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {[
+                "Practical",
+                "Result-focused",
+                "Long-term support",
+                "Transparent",
+                "Scalable",
+              ].map((t) => (
+                <span
+                  key={t}
+                  className="text-xs sm:text-sm px-3.5 py-1.5 rounded-full border border-white/10 text-white/75 hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/50 transition-all duration-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </Section>
+
+      <Section className="relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--brand-orange)]/5 to-transparent" />
+        <div className="relative container-x">
+          <SectionTitle
+            eyebrow="Services"
+            title={
+              <>
+                End to End Growth Solutions{" "}
+                <span className="text-gradient-orange">
+                  Entire Growth Stack
+                </span>
+              </>
+            }
+            subtitle="ERP, HR, marketing, web and design built to work together, not in silos."
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.08 }}
+                className="group relative glass-card p-7 hover:border-[var(--brand-orange)]/40 transition-all hover:-translate-y-1 duration-300"
+              >
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity glow-orange" />
+                <div className="relative grid h-12 w-12 place-items-center rounded-xl mb-5 bg-gradient-orange text-black">
+                  <s.icon className="h-6 w-6" />
+                </div>
+
+                <h3 className="relative text-xl font-bold mb-2 group-hover:text-[var(--brand-orange)] transition-colors">
+                  {s.title}
+                </h3>
+
+                <p className="relative text-sm text-white/65 leading-relaxed">
+                  {s.desc}
+                </p>
+
+                <Link
+                  to={s.to}
+                  className="relative inline-flex items-center gap-1.5 mt-5 text-sm text-[var(--brand-orange)] group-hover:gap-3 transition-all"
+                >
+                  Learn more <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section className="!py-12 sm:!py-14 lg:!py-16">
+        <div className="container-x">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] px-5 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12 backdrop-blur-xl"
+          >
+            {/* Background Glow */}
+            <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[var(--brand-orange)]/15 blur-[100px]" />
+            <div className="absolute -bottom-28 right-10 h-72 w-72 rounded-full bg-[var(--brand-orange)]/10 blur-[120px]" />
+
+            {/* Light Border Line */}
+            <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[var(--brand-orange)]/40 to-transparent" />
+
+            <div className="relative grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4 lg:gap-10">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: i * 0.08,
+                    duration: 0.5,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ y: -5 }}
+                  className="group relative text-center"
+                >
+                  {/* Divider desktop only */}
+                  {i !== 0 && (
+                    <div className="absolute left-0 top-1/2 hidden h-14 w-px -translate-y-1/2 bg-white/10 lg:block" />
+                  )}
+
+                  <Counter to={s.v} suffix={s.suffix} label={s.label} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="container-x">
+          <SectionTitle
+            eyebrow="Why Choose Us"
+            title={
+              <>
+                Built for the way{" "}
+                <span className="text-gradient-orange">real businesses</span>{" "}
+                work
+              </>
+            }
+          />
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Rocket,
+                t: "Real implementation experience",
+                d: "Hands-on with admin, sales and ERP — we've done it, not just consulted on it.",
+              },
+              {
+                icon: ShieldCheck,
+                t: "Result-focused strategy",
+                d: "Every system, campaign and design ties back to measurable business outcomes.",
+              },
+              {
+                icon: Users,
+                t: "Long-term support",
+                d: "Training, optimization, error fixing and ongoing partnership beyond go-live.",
+              },
+              {
+                icon: Globe,
+                t: "Global delivery",
+                d: "Teams across Pakistan, USA, UAE, UK and KSA — 24/7 timezone coverage.",
+              },
+              {
+                icon: BarChart3,
+                t: "Transparent reporting",
+                d: "Dashboards, KPIs and clear communication. No black boxes, no surprises.",
+              },
+              {
+                icon: Building2,
+                t: "Industry experience",
+                d: "Retail, manufacturing, distribution, real estate, healthcare, education and more.",
+              },
+            ].map((w, i) => (
+              <motion.div
+                key={w.t}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="glass-card p-6 hover:border-[var(--brand-orange)]/40 transition-colors"
+              >
+                <w.icon className="h-8 w-8 text-[var(--brand-orange)] mb-4" />
+
+                <h3 className="font-semibold mb-2 hover:text-[var(--brand-orange)] transition-colors">
+                  {w.t}
+                </h3>
+
+                <p className="text-sm text-white/60 leading-relaxed">
+                  {w.d}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section className="relative overflow-hidden">
+        {/* Background Glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--brand-orange)]/5 to-transparent" />
+        <div className="absolute -top-24 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[var(--brand-orange)]/15 blur-[130px]" />
+        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[var(--brand-orange)]/10 blur-[150px]" />
+
+        <div className="relative container-x">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+          >
+            <SectionTitle
+              eyebrow="Director"
+              title={
+                <>
+                  Meet the people behind{" "}
+                  <span className="text-gradient-orange">
+                    Business Genie Consulting
+                  </span>
+                </>
+              }
+              subtitle="Experienced professionals helping businesses automate operations, improve systems and grow with digital strategy."
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
+            {[
+              {
+                img: "/owner-2.jpg",
+                n: "Syed Umar Javaid",
+                r: "Entrepreneur | HR & Operations Strategist",
+                q: "Architecting the digital core and company culture under one vision. Aligning advanced technology stacks with strategic human resource management. Driving operational efficiency through automation and leadership development.",
+                badge: "Director",
+                status: "Trusted Expert",
+                tags: ["ERP", "HR", "Leadership", " AI Automation"],
+              },
+              {
+                img: "/owner-1.jpg",
+                n: "Saleem Zia",
+                r: "ERP & Digital Strategy Lead",
+                q: "Helping businesses move from manual records to structured ERP systems with accounts, inventory, HR and reporting.",
+                badge: "Director",
+                status: "Trusted Expert",
+                tags: ["ERP", "Accounts", "Automation", "WebHR", "Inventory"],
+              },
+              {
+                img: "/owner-3.jpg",
+                n: "Business Genie Team",
+                r: "Web, UI/UX, Enterprise Systems, ERP,HR & Automation Team",
+                q: "Designing modern websites, UI/UX systems, ERP & HR solutions, and workflow automation for scalable business operations",
+                badge: "Team",
+                status: "Professional Team",
+                tags: ["Web", "UI/UX", "Systems Design", "ERP", "HR", "Automation"],
+              },
+            ].map((t, i) => (
+              <motion.div
+                key={t.n}
+                initial={{ opacity: 0, y: 34, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  delay: i * 0.08,
+                  duration: 0.55,
+                  ease: "easeOut",
+                }}
+                whileHover={{ y: -8, scale: 1.015 }}
+                className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.035] p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 hover:border-[var(--brand-orange)]/55 hover:bg-white/[0.06]"
+              >
+                {/* Hover Glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute -top-20 -right-20 h-44 w-44 rounded-full bg-[var(--brand-orange)]/25 blur-[70px]" />
+                  <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-[var(--brand-orange)]/10 blur-[70px]" />
+                </div>
+
+                <div className="absolute left-0 top-0 h-[2px] w-0 bg-gradient-orange transition-all duration-500 group-hover:w-full" />
+
+                <div className="relative">
+                  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/30">
+                    <img
+                      src={t.img}
+                      alt={t.n}
+                      className="h-[260px] sm:h-[280px] lg:h-[310px] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                    <div className="absolute left-4 right-4 bottom-4">
+                      <div className="inline-flex rounded-full bg-[var(--brand-orange)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-black">
+                        {t.badge}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-[var(--brand-orange)]">
+                      {t.n}
+                    </h3>
+
+                    <div className="mt-1 text-sm font-medium text-[var(--brand-orange)]">
+                      {t.r}
+                    </div>
+
+                    <p className="mt-4 text-sm sm:text-[15px] leading-relaxed text-white/65">
+                      {t.q}
+                    </p>
+
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {t.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/10 px-3 py-1 text-[11px] text-white/55 transition-all duration-300 group-hover:border-[var(--brand-orange)]/35 group-hover:text-white/75"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+                      <div className="flex gap-1">
+                        {Array.from({ length: 5 }).map((_, j) => (
+                          <Star
+                            key={j}
+                            className="h-4 w-4 fill-[var(--brand-orange)] text-[var(--brand-orange)]"
+                          />
+                        ))}
+                      </div>
+
+                      <span className="text-xs text-white/45 group-hover:text-white/70 transition-colors">
+                        {t.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+    </SiteLayout>
+  );
+}
