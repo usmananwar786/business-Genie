@@ -40,7 +40,7 @@ const contactEmail = "info@businessgenie.net";
 
 // WhatsApp number country code ke sath hota hai.
 // Baad me sirf ye number change kar lena.
-const whatsappNumber = "923001234567";
+const whatsappNumber = "+923394050121";
 
 const whatsappUrl = whatsappNumber
   ? `https://wa.me/${whatsappNumber}`

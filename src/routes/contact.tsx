@@ -46,6 +46,12 @@ const services = [
 
 const officeAddress = "968 Q Block, Johar Town, Lahore, Pakistan";
 const contactEmail = "info@businessgenie.net";
+const whatsappNumber = "+923394050121";
+const whatsappCleanNumber = whatsappNumber.replace(/\D/g, "");
+const whatsappUrl = SITE.whatsappUrl?.includes(whatsappCleanNumber)
+  ? SITE.whatsappUrl
+  : `https://wa.me/${whatsappCleanNumber}`;
+
 const formSubmitEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
 
 function Contact() {
@@ -385,13 +391,13 @@ function Contact() {
               href={`mailto:${contactEmail}`}
             />
 
-            {/* <ContactCard
+            <ContactCard
               icon={Phone}
               title="WhatsApp"
-              value="Chat with our team"
-              href={SITE.whatsappUrl}
+              value={whatsappNumber}
+              href={whatsappUrl}
               accent
-            /> */}
+            />
 
             <ContactCard
               icon={MapPin}

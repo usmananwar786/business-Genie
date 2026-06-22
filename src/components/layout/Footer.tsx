@@ -9,7 +9,7 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
-import { SITE, LOCATIONS } from "@/lib/site";
+import { LOCATIONS } from "@/lib/site";
 
 const sections = [
   {
@@ -37,7 +37,7 @@ const sections = [
 
 export function Footer() {
   const footerEmail = "info@businessgenie.net";
-  const footerNumber = "04238977959";
+  const footerNumbers = ["04238977959", "+923394050121"];
 
   return (
     <footer className="relative mt-24 overflow-hidden">
@@ -115,13 +115,16 @@ export function Footer() {
             </ul>
 
             <div className="space-y-3">
-              <a
-                href={`tel:${footerNumber}`}
-                className="flex items-center gap-2 text-sm text-white/80 hover:text-[var(--brand-orange)]"
-              >
-                <Phone className="h-4 w-4" />
-                {footerNumber}
-              </a>
+              {footerNumbers.map((number) => (
+                <a
+                  key={number}
+                  href={`tel:${number}`}
+                  className="flex items-center gap-2 text-sm text-white/80 hover:text-[var(--brand-orange)]"
+                >
+                  <Phone className="h-4 w-4" />
+                  {number}
+                </a>
+              ))}
 
               <a
                 href={`mailto:${footerEmail}`}
