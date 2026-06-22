@@ -72,37 +72,37 @@ const items = [
 
 const industryCards = [
   {
-    img: "/public/retail.jpg",
+    img: "/retail.jpg",
     title: "Retail Operations",
     desc: "Manage POS, stock, branches, purchases, customers and daily sales reports from one connected system.",
   },
   {
-    img: "/public/manufacturing.jpg",
+    img: "/manufacturing.jpg",
     title: "Manufacturing Control",
     desc: "Track production planning, raw materials, costing, wastage, finished goods and factory reporting.",
   },
   {
-    img: "/public/distribution.jpg",
+    img: "/distribution.jpg",
     title: "Distribution Network",
     desc: "Control warehouses, dealers, vendors, routes, dispatch, deliveries and payment follow-ups.",
   },
   {
-    img: "/public/textile.jpg",
+    img: "/textile.jpg",
     title: "Textile Workflow",
     desc: "Handle spinning, weaving, knitting, dyeing, printing, stitching and stock movement with clear visibility.",
   },
   {
-    img: "/public/pharma.jpg",
+    img: "/pharma.jpg",
     title: "Pharma Processing",
     desc: "Manage raw material weighing, formulation, batch processing, coating, packaging and compliance records.",
   },
   {
-    img: "/public/ecommerce.jpg",
+    img: "/ecommerce.jpg",
     title: "E-commerce Growth",
     desc: "Connect online orders, inventory, marketing, customer data, conversion tracking and reporting dashboards.",
   },
   {
-    img: "/public/solor.png",
+    img: "/solor.png",
     title: "Solar Energy",
     desc: "Manage power generation, storage and smart grid systems.",
   },

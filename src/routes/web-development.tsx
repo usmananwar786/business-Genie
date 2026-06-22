@@ -45,7 +45,7 @@ const services = [
 
 const flipCards = [
   {
-    img: "/public/web-app-development.jpg",
+    img: "/web-app-development.jpg",
     icon: Monitor,
     title: "Web Application Development",
     short: "Custom business websites and web apps",
@@ -58,7 +58,7 @@ const flipCards = [
     stack: ["React", "TypeScript", "Tailwind", "MERN"],
   },
   {
-    img: "/public/ui-ux-development.jpg",
+    img: "/ui-ux-development.jpg",
     icon: Smartphone,
     title: "UI / UX & Frontend Development",
     short: "Premium interface with smooth experience",
@@ -71,7 +71,7 @@ const flipCards = [
     stack: ["React", "UI/UX", "Framer Motion", "Responsive"],
   },
   {
-    img: "/public/api-development.jpg",
+    img: "/api-development.jpg",
     icon: Server,
     title: "Backend & API Development",
     short: "Secure backend, APIs and integrations",

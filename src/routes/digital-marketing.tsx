@@ -41,21 +41,21 @@ const services: {
 }[] = [
   {
     icon: Search,
-    img: "/public/google-ads.jpg",
+    img: "/google-ads.jpg",
     title: "Google Ads",
     desc: "High-intent search campaigns designed to reach people actively looking for your services.",
     features: ["Search Ads", "Call Ads", "Lead Forms"],
   },
   {
     icon: Megaphone,
-    img: "/public/meta-ads.jpg",
+    img: "/meta-ads.jpg",
     title: "Meta Ads",
     desc: "Facebook and Instagram campaigns for awareness, leads, retargeting, sales and brand growth.",
     features: ["Facebook Ads", "Instagram Ads", "Retargeting"],
   },
   {
     icon: Globe2,
-    img: "/public/linkedin-ads.jpg",
+    img: "/linkedin-ads.jpg",
     title: "LinkedIn Ads",
     desc: "B2B campaigns built to reach founders, business owners, professionals and decision makers.",
     features: ["B2B Leads", "Company Targeting", "Professional Audience"],

@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{
           "ERP implementation, digital marketing, SEO, web development, UI/UX design and business automation services.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/public/logo2.png" },
+      { property: "og:image", content: "/logo2.png" },
 
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Business Genie Consulting" },
@@ -109,7 +109,7 @@ export const Route = createRootRouteWithContext<{
         content:
           "ERP implementation, digital marketing, SEO, web development, UI/UX design and business automation services.",
       },
-      { name: "twitter:image", content: "/public/logo2.png" },
+      { name: "twitter:image", content: "/logo2.png" },
     ],
 
     links: [
@@ -120,16 +120,16 @@ export const Route = createRootRouteWithContext<{
       {
         rel: "icon",
         type: "image/png",
-        href: "/public/logo2.png",
+        href: "/logo2.png",
       },
       {
         rel: "shortcut icon",
         type: "image/png",
-        href: "/public/logo2.png",
+        href: "/logo2.png",
       },
       {
         rel: "apple-touch-icon",
-        href: "/public/logo2.png",
+        href: "/logo2.png",
       },
     ],
   }),

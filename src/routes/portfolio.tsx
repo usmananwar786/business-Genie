@@ -70,47 +70,47 @@ const stats: {
 const happyClients = [
   {
     name: "",
-    logo: "/public/import &export.png",
+    logo: "/import &export.png",
   },
   {
     name: "",
-    logo: "/public/stone.png",
+    logo: "/stone.png",
   },
   {
     name: "",
-    logo: "/public/packing.png",
+    logo: "/packing.png",
   },
   {
     name: "",
-    logo: "/public/pharma.png",
+    logo: "/pharma.png",
   },
   {
     name: "",
-    logo: "/public/ravi.png",
+    logo: "/ravi.png",
   },
   {
     name: "",
-    logo: "/public/filtech.png",
+    logo: "/filtech.png",
   },
   {
     name: "",
-    logo: "/public/3star.png",
+    logo: "/3star.png",
   },
   {
     name: "",
-    logo: "/public/semet.png",
+    logo: "/semet.png",
   },
     {
     name: "",
-    logo: "/public/english pharma.png",
+    logo: "/english pharma.png",
   },
     {
     name: "",
-    logo: "/public/mailik correcution.png",
+    logo: "/mailik correcution.png",
   },
     {
     name: "",
-    logo: "/public/pak.png",
+    logo: "/pak.png",
   },
 ];
 

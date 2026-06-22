@@ -44,21 +44,21 @@ const seoCards: {
 }[] = [
   {
     icon: Gauge,
-    img: "/public/optimization.jpg",
+    img: "/optimization.jpg",
     title: "Technical SEO",
     desc: "We improve your website foundation so Google can crawl, index and understand your pages properly.",
     points: ["Speed optimization", "Indexing fixes", "Core site health"],
   },
   {
     icon: MapPin,
-    img: "/public/local-seo.jpg",
+    img: "/local-seo.jpg",
     title: "Local SEO",
     desc: "We optimize your local visibility so nearby customers can find your business on Google Search and Maps.",
     points: ["Google Business Profile", "Local keywords", "Location pages"],
   },
   {
     icon: PenTool,
-    img: "/public/content-seo.jpg",
+    img: "/content-seo.jpg",
     title: "Content SEO",
     desc: "We create keyword-focused content plans that target search intent and support long-term organic growth.",
     points: ["Service pages", "Blog strategy", "Content clusters"],
@@ -138,7 +138,7 @@ function SEO() {
 
           {/* SEO Banner Background */}
           <img
-            src="/public/seo-banner.jpg"
+            src="/seo-banner.jpg"
             alt="SEO banner background"
             className="absolute inset-0 h-full w-full object-cover opacity-50"
           />
