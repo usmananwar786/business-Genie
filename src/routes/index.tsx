@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Rocket,
   Star,
+  StarHalf,
   Building2,
   Users,
   BarChart3,
@@ -773,7 +774,7 @@ function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
             {[
               {
-                img: "/owner-2.jpg",
+                img: "/owner-2.png",
                 n: "Syed Umar Javaid",
                 r: "Entrepreneur | HR & Operations Strategist",
                 q: "Umer has a proven track record of success, having worked for several notable companies in the past, including Systems Ltd, Xavor Corporation, and i2C Inc. Throughout his career, he has held various key leadership roles, including Director Strategy and planning and has consistently demonstrated an ability to drive growth, innovation, and profitability.",
@@ -863,14 +864,24 @@ function Home() {
                     </div>
 
                     <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-                      <div className="flex gap-1">
-                        {Array.from({ length: 5 }).map((_, j) => (
-                          <Star
-                            key={j}
-                            className="h-4 w-4 fill-[var(--brand-orange)] text-[var(--brand-orange)]"
-                          />
-                        ))}
-                      </div>
+                     <div className="flex gap-1">
+  {/* 4 full orange stars */}
+  {Array.from({ length: 4 }).map((_, j) => (
+    <Star
+      key={j}
+      className="h-4 w-4 fill-[var(--brand-orange)] text-[var(--brand-orange)]"
+    />
+  ))}
+
+  {/* 5th star half orange and half white */}
+  <span className="relative inline-flex h-4 w-4">
+    {/* White full star background */}
+    <Star className="h-4 w-4 fill-white/40 text-white/45" />
+
+    {/* Orange half star on top */}
+    <StarHalf className="absolute left-0 top-0 h-4 w-4 fill-[var(--brand-orange)] text-[var(--brand-orange)]" />
+  </span>
+</div>
 
                       <span className="text-xs text-white/45 group-hover:text-white/70 transition-colors">
                         {t.status}

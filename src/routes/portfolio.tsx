@@ -45,7 +45,7 @@ const stats: {
   to: "/portfolio" | "/services" | "/contact";
 }[] = [
   {
-    number: 100,
+    number: 200,
     suffix: "+",
     label: "Projects Delivered",
     desc: "ERP, websites, marketing campaigns and business systems.",

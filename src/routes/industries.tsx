@@ -45,7 +45,7 @@ const items = [
   },
   {
     icon: Building2,
-    t: "Textile",
+    t: "Textile/Garments Manufacturing",
     d: " knitting, dyeing, printing and stitching.",
   },
   {
@@ -88,8 +88,8 @@ const industryCards = [
   },
   {
     img: "/textile.jpg",
-    title: "Textile Workflow",
-    desc: "Handle spinning, weaving, knitting, dyeing, printing, stitching and stock movement with clear visibility.",
+    title: "Textile/Garments Manufacturing",
+    desc: "Complete cut to pack process management nitting, dyeing, printing, stitching And stock movement with clear visibility.",
   },
   {
     img: "/pharma.jpg",
@@ -103,8 +103,13 @@ const industryCards = [
   },
   {
     img: "/solor.png",
-    title: "Solar Energy",
-    desc: "Manage power generation, storage and smart grid systems.",
+    title: "Solar Companies",
+    desc: "Manage sale inquires Quotations with end to end project management. Site wise Inventory and expense tracking.",
+  },
+   {
+    img: "/Construction.jpg",
+    title: "Construction ",
+    desc: "Healping goverment contractors and loacl compaines to gain complete control over their projects and operations.",
   },
 ];
 
