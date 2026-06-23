@@ -2,9 +2,9 @@ import { Link } from "@tanstack/react-router";
 import {
   Facebook,
   Linkedin,
-  Instagram,
-  Twitter,
-  Youtube,
+  // Instagram,
+  // Twitter,
+  // Youtube,
   Mail,
   MapPin,
   Phone,
@@ -25,7 +25,7 @@ const sections = [
     title: "Services",
     items: [
       { l: "ERP Implementation", to: "/erp-solutions" },
-      { l: "HR Solutions", to: "/hr" },
+      { l: "HR Solutions", to: "/HRMS" },
       { l: "Digital Marketing", to: "/digital-marketing" },
       { l: "SEO Services", to: "/seo" },
       { l: "Web Development", to: "/web-development" },
@@ -33,6 +33,34 @@ const sections = [
       { l: "Business Automation", to: "/portfolio" },
     ],
   },
+];
+
+const SOCIALS = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/businessgenieconsulting/",
+    icon: Facebook,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/104830846/",
+    icon: Linkedin,
+  },
+  // {
+  //   label: "Instagram",
+  //   href: "#",
+  //   icon: Instagram,
+  // },
+  // {
+  //   label: "Twitter",
+  //   href: "#",
+  //   icon: Twitter,
+  // },
+  // {
+  //   label: "YouTube",
+  //   href: "#",
+  //   icon: Youtube,
+  // },
 ];
 
 export function Footer() {
@@ -57,38 +85,41 @@ export function Footer() {
             </div>
 
             <p className="mt-5 text-sm text-white/70 leading-relaxed max-w-sm">
-              Business Genie Consulting helps businesses automate operations,
-              build digital systems, and grow through ERP, HR, marketing, SEO,
-              web development, and UI/UX solutions.
+              Business Genie Consulting helps businesses streamline operations,
+              accelerate transformation, achieve sustainable growth through
+              innovative technology and consulting solutions.
             </p>
 
             <div className="mt-6 flex gap-3">
-              {[Facebook, Linkedin, Instagram, Twitter, Youtube].map(
-                (Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="grid h-10 w-10 place-items-center rounded-full bg-white/5 border border-white/10 hover:bg-gradient-orange hover:text-black hover:border-transparent transition-all"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                )
-              )}
+              {SOCIALS.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="grid h-10 w-10 place-items-center rounded-full bg-white/5 border border-white/10 hover:bg-gradient-orange hover:text-black hover:border-transparent transition-all"
+                >
+                  <social.icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {sections.map((s) => (
-            <div key={s.title}>
-              <h4 className="text-white font-semibold mb-5">{s.title}</h4>
+          {sections.map((section) => (
+            <div key={section.title}>
+              <h4 className="text-white font-semibold mb-5">
+                {section.title}
+              </h4>
 
               <ul className="space-y-3">
-                {s.items.map((it) => (
-                  <li key={it.l}>
+                {section.items.map((item) => (
+                  <li key={item.l}>
                     <Link
-                      to={it.to}
+                      to={item.to}
                       className="text-sm text-white/65 hover:text-[var(--brand-orange)] transition-colors"
                     >
-                      {it.l}
+                      {item.l}
                     </Link>
                   </li>
                 ))}
@@ -97,7 +128,9 @@ export function Footer() {
           ))}
 
           <div>
-            <h4 className="text-white font-semibold mb-5">Global Presence</h4>
+            <h4 className="text-white font-semibold mb-5">
+              Global Presence
+            </h4>
 
             <ul className="space-y-3 mb-6">
               {LOCATIONS.map((loc) => (

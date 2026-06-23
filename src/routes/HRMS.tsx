@@ -23,7 +23,7 @@ import { SiteLayout } from "@/components/layout/SiteLayout";
 import { PageHero, Section, SectionTitle } from "@/components/layout/Section";
 import { SITE } from "@/lib/site";
 
-export const Route = createFileRoute("/HR")({
+export const Route = createFileRoute("/HRMS")({
   head: () => ({
     meta: [
       { title: "HR Automation — Business Genie Consulting" },

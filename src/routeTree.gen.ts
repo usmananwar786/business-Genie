@@ -21,7 +21,7 @@ import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as HRRouteImport } from './routes/HR'
+import { Route as HRMSRouteImport } from './routes/HRMS'
 import { Route as IndexRouteImport } from './routes/index'
 
 const WebDevelopmentRoute = WebDevelopmentRouteImport.update({
@@ -84,9 +84,9 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HRRoute = HRRouteImport.update({
-  id: '/HR',
-  path: '/HR',
+const HRMSRoute = HRMSRouteImport.update({
+  id: '/HRMS',
+  path: '/HRMS',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -97,7 +97,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/HR': typeof HRRoute
+  '/HRMS': typeof HRMSRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
@@ -113,7 +113,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/HR': typeof HRRoute
+  '/HRMS': typeof HRMSRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
@@ -130,7 +130,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/HR': typeof HRRoute
+  '/HRMS': typeof HRMSRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
@@ -148,7 +148,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/HR'
+    | '/HRMS'
     | '/about'
     | '/careers'
     | '/contact'
@@ -164,7 +164,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/HR'
+    | '/HRMS'
     | '/about'
     | '/careers'
     | '/contact'
@@ -180,7 +180,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/HR'
+    | '/HRMS'
     | '/about'
     | '/careers'
     | '/contact'
@@ -197,7 +197,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HRRoute: typeof HRRoute
+  HRMSRoute: typeof HRMSRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
@@ -298,11 +298,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/HR': {
-      id: '/HR'
-      path: '/HR'
-      fullPath: '/HR'
-      preLoaderRoute: typeof HRRouteImport
+    '/HRMS': {
+      id: '/HRMS'
+      path: '/HRMS'
+      fullPath: '/HRMS'
+      preLoaderRoute: typeof HRMSRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -317,7 +317,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HRRoute: HRRoute,
+  HRMSRoute: HRMSRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,

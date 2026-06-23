@@ -30,18 +30,18 @@ export const Route = createFileRoute("/")({
     meta: [
       {
         title:
-          "Business Genie Consulting — ERP, HR & Digital Marketing Solutions",
+          "Business Genie Consulting — ERP, HRMS & Digital Marketing Solutions",
       },
       {
         name: "description",
         content:
-          "Professional ERP, HR automation and digital marketing solutions for growing businesses. Automate operations, improve reporting and scale with smart systems.",
+          "Professional ERP, HRMS automation and digital marketing solutions for growing businesses. Automate operations, improve reporting and scale with smart systems.",
       },
       { property: "og:title", content: "Business Genie Consulting" },
       {
         property: "og:description",
         content:
-          "Smart solutions for ERP, HR automation and digital marketing growth.",
+          "Smart solutions for ERP, HRMS automation and digital marketing growth.",
       },
     ],
   }),
@@ -52,15 +52,15 @@ const services = [
   {
     icon: Database,
     title: "ERP Implementation",
-    desc: "Complete ERP setup for accounts, inventory, HR, sales, purchase, production & reporting.",
+    desc: "Complete ERP setup for accounts, inventory, HRMS, sales, purchase, production & reporting.",
     to: "/erp-solutions",
     color: "orange",
   },
   {
     icon: Workflow,
-    title: "HR Automation",
+    title: "HRMS Automation",
     desc: "Employee onboarding, billing and operations.",
-    to: "/HR",
+    to: "/HRMS",
     color: "orange",
   },
   {
@@ -142,7 +142,7 @@ function Counter({
 
     const obs = new IntersectionObserver(
       ([e]) => e.isIntersecting && setActive(true),
-      { threshold: 0.4 }
+      { tHRMSeshold: 0.4 }
     );
 
     obs.observe(ref.current);
@@ -248,7 +248,7 @@ function Hero() {
             </span>
             ,{" "}
             <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
-              HR
+              HRMS
             </span>{" "}
             and{" "}
             <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
@@ -263,8 +263,8 @@ function Hero() {
             className="mt-6 text-sm sm:text-base md:text-lg text-white/70 max-w-2xl leading-relaxed"
           >
             Business Genie Consulting helps companies manage operations,
-            automate HR, implement ERP systems, improve reporting and grow
-            through performance-focused digital marketing.
+            automate HRMS, implement ERP systems, improve reporting and grow
+            tHRMSough performance-focused digital marketing.
           </motion.p>
 
           <motion.div
@@ -297,7 +297,7 @@ function Hero() {
           >
             {[
               ["ERP Systems", "Accounts, inventory, sales & reporting"],
-              ["HR Automation", "Payroll, attendance & employee records"],
+              ["HRMS Automation", "Payroll, attendance & employee records"],
               ["Digital Marketing", "SEO, ads, leads & online growth"],
             ].map(([title, text]) => (
               <div
@@ -385,7 +385,7 @@ function Hero() {
               </div>
               <div>
                 <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
-                  HR Automation
+                  HRMS Automation
                 </div>
                 <div className="text-xs text-white/55">
                   Payroll, attendance & employee records
@@ -480,7 +480,7 @@ function Home() {
             >
               <img
                 src="/business-automation.jpg"
-                alt="ERP, HR and Digital Marketing Automation"
+                alt="ERP, HRMS and Digital Marketing Automation"
                 className="h-[300px] sm:h-[380px] md:h-[440px] lg:h-[520px] xl:h-[560px] 2xl:h-[620px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
 
@@ -489,7 +489,7 @@ function Home() {
 
               <div className="absolute left-5 right-5 bottom-5 sm:left-7 sm:right-7 sm:bottom-7">
                 <div className="inline-flex rounded-full bg-[var(--brand-orange)] px-4 py-1.5 text-[11px] sm:text-xs font-semibold text-black">
-                  ERP • HR • Digital Marketing
+                  ERP • HRMS • Digital Marketing
                 </div>
 
                 <h3 className="mt-4 max-w-md text-xl sm:text-2xl lg:text-3xl font-semibold leading-tight text-white">
@@ -518,7 +518,7 @@ function Home() {
               </span>
               ,{" "}
               <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
-                HR
+                HRMS
               </span>{" "}
               and{" "}
               <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
@@ -528,22 +528,20 @@ function Home() {
 
             <div className="mt-5 sm:mt-6 space-y-4 text-sm sm:text-base md:text-lg 2xl:text-xl leading-relaxed text-white/70">
               <p>
-                Business Genie Consulting helps companies move from scattered
-                manual processes to structured, automated and scalable digital
-                systems.
+                Business Genie Consulting helps companies transform fragmented, manual processes into structured, automated, and scalable digital ecosystems.
+
+We partner with organizations to streamline operations, improve visibility, and drive sustainable growth tHRMSough a comprehensive range of technology and business consulting services. Our expertise spans ERP implementation, HRMS automation, digital marketing, SEO, web development, UI/UX design, and business process optimization.
               </p>
 
               <p>
-                We combine ERP implementation, HR automation, digital marketing,
-                SEO, web development, UI/UX design and business process
-                optimization to help businesses grow with clarity and control.
+               
               </p>
             </div>
 
             <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 "ERP Implementation",
-                "HR Automation",
+                "HRMS Automation",
                 "Digital Marketing",
                 "SEO & Web Growth",
                 "Reporting Dashboards",
@@ -593,7 +591,7 @@ function Home() {
                 </span>
               </>
             }
-            subtitle="ERP, HR, marketing, web and design built to work together, not in silos."
+            subtitle="ERP, HRMSMS, marketing, web and design built to work together, not in silos."
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -776,11 +774,11 @@ function Home() {
               {
                 img: "/owner-2.png",
                 n: "Syed Umar Javaid",
-                r: "Entrepreneur | HR & Operations Strategist",
-                q: "Umer has a proven track record of success, having worked for several notable companies in the past, including Systems Ltd, Xavor Corporation, and i2C Inc. Throughout his career, he has held various key leadership roles, including Director Strategy and planning and has consistently demonstrated an ability to drive growth, innovation, and profitability.",
+                r: "Entrepreneur | HRMS & Operations Strategist",
+                q: "Umer has a proven track record of success, having worked for several notable companies in the past, including Systems Ltd, Xavor Corporation, and i2C Inc. THRMSoughout his career, he has held various key leadership roles, including Director Strategy and planning and has consistently demonstrated an ability to drive growth, innovation, and profitability.",
                 badge: "Director",
                 status: "Trusted Expert",
-                tags: ["ERP", "HRMS", "Leadership", " AI Automation"],
+                tags: [ "HRMSMS", "Leadership", "Trainings", ""," AI Automation","ERP",],
               },
               {
                 img: "/owner-1.jpg",
@@ -794,11 +792,11 @@ function Home() {
               {
                 img: "/owner-3.jpg",
                 n: "Business Genie Team",
-                r: "ERP systems, HR automation, web design and digital marketing specialists",
-                q: " ERP & HR system implementation ,Designing modern websites,  UI/UX systems,  and Workflow automation for scalable business growth.",
+                r: "ERP systems, HRMS automation, web design and digital marketing specialists",
+                q: " ERP & HRMS system implementation ,Designing modern websites,  UI/UX systems,  and Workflow automation for scalable business growth.",
                 badge: "Team",
                 status: "Professional Team",
-                tags: [ "ERP", "HRMS",  "Automation", "Web", "UI/UX", "Systems Design", , ],
+                tags: [ "ERP", "HRMSMS",  "Automation", "Web", "UI/UX", "Systems Design", , ],
               },
             ].map((t, i) => (
               <motion.div

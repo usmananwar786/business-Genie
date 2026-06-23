@@ -45,8 +45,8 @@ const items = [
   },
   {
     icon: Building2,
-    t: "Textile/Garments Manufacturing",
-    d: " knitting, dyeing, printing and stitching.",
+    t: "Garments Manufacturing",
+    d: "knitting, dyeing, printing and stitching.",
   },
   {
     icon: HeartPulse,
