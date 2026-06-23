@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
+  useEffect,
+  useRef,
   useState,
   type ChangeEventHandler,
   type FocusEventHandler,
+  type FormEvent,
 } from "react";
 import { useFormik } from "formik";
 import {
@@ -33,6 +36,15 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
+type ContactFormValues = {
+  firstName: string;
+  companyName: string;
+  phone: string;
+  email: string;
+  service: string;
+  message: string;
+};
+
 const services = [
   "ERP Implementation",
   "HR Automation",
@@ -51,25 +63,44 @@ const whatsappUrl = SITE.whatsappUrl?.includes(whatsappCleanNumber)
   ? SITE.whatsappUrl
   : `https://wa.me/${whatsappCleanNumber}`;
 
-const formSubmitEndpoint = `https://formsubmit.co/ajax/${contactEmail}`;
+const formSubmitEndpoint = `https://formsubmit.co/${contactEmail}`;
 
 function Contact() {
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [sent, setSent] = useState(false);
-  const [formError, setFormError] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
-  const formik = useFormik({
+  const successRedirectUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/contact?sent=1`
+      : "";
+
+  const currentPageUrl =
+    typeof window !== "undefined" ? window.location.href : "";
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("sent") === "1") {
+      setSent(true);
+      window.history.replaceState({}, "", "/contact");
+    }
+  }, []);
+
+  const formik = useFormik<ContactFormValues>({
     initialValues: {
       firstName: "",
       companyName: "",
-       phone: "",
+      phone: "",
       email: "",
-     
       service: "",
       message: "",
     },
 
     validate: (values) => {
-      const errors: Partial<typeof values> = {};
+      const errors: Partial<ContactFormValues> = {};
 
       if (!values.firstName.trim()) {
         errors.firstName = "First name is required";
@@ -79,14 +110,14 @@ function Contact() {
         errors.companyName = "Company name is required";
       }
 
+      if (!values.phone.trim()) {
+        errors.phone = "Phone number is required";
+      }
+
       if (!values.email.trim()) {
         errors.email = "Email is required";
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
         errors.email = "Enter a valid email address";
-      }
-
-      if (!values.phone.trim()) {
-        errors.phone = "Phone number is required";
       }
 
       if (!values.service) {
@@ -100,58 +131,33 @@ function Contact() {
       return errors;
     },
 
-    onSubmit: async (values, { resetForm, setSubmitting }) => {
-      setFormError("");
-
-      try {
-        const response = await fetch(formSubmitEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            _subject: "New Contact Form Message - Business Genie Consulting",
-            _template: "table",
-            _captcha: "false",
-            _url: window.location.href,
-            _replyto: values.email,
-            _autoresponse:
-              "Thank you for contacting Business Genie Consulting. Our team has received your message and will contact you shortly.",
-            "First Name": values.firstName,
-            "Company Name": values.companyName,
-             Phone: values.phone,
-            Email: values.email,
-           
-            Service: values.service,
-            Message: values.message,
-          }),
-        });
-
-        const result = await response.json().catch(() => null);
-
-        if (
-          !response.ok ||
-          result?.success === false ||
-          result?.success === "false"
-        ) {
-          console.error("FormSubmit error:", result);
-          throw new Error("Form submission failed");
-        }
-
-        resetForm();
-        setSent(true);
-      } catch (error) {
-        console.error("Contact form error:", error);
-
-        setFormError(
-          `Your message could not be sent at the moment. Please try again shortly or email us directly at ${contactEmail}.`
-        );
-      } finally {
-        setSubmitting(false);
-      }
+    onSubmit: () => {
+      // Native FormSubmit submission is handled in handleFormSubmit.
     },
   });
+
+  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSending(true);
+
+    const errors = await formik.validateForm();
+
+    formik.setTouched({
+      firstName: true,
+      companyName: true,
+      phone: true,
+      email: true,
+      service: true,
+      message: true,
+    });
+
+    if (Object.keys(errors).length > 0) {
+      setIsSending(false);
+      return;
+    }
+
+    formRef.current?.submit();
+  };
 
   return (
     <SiteLayout>
@@ -272,15 +278,50 @@ function Contact() {
                 </motion.div>
               ) : (
                 <form
-                  onSubmit={formik.handleSubmit}
+                  ref={formRef}
+                  action={formSubmitEndpoint}
+                  method="POST"
+                  onSubmit={handleFormSubmit}
                   className="mt-7 grid gap-4 sm:grid-cols-2"
                 >
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Contact Form Message - Business Genie Consulting"
+                  />
+
+                  <input type="hidden" name="_template" value="table" />
+
+                  <input type="hidden" name="_captcha" value="false" />
+
+                  <input
+                    type="hidden"
+                    name="_next"
+                    value={successRedirectUrl}
+                  />
+
+                  <input type="hidden" name="_url" value={currentPageUrl} />
+
+                  <input
+                    type="hidden"
+                    name="_autoresponse"
+                    value="Thank you for contacting Business Genie Consulting. Our team has received your message and will contact you shortly."
+                  />
+
+                  <input
+                    type="hidden"
+                    name="_replyto"
+                    value={formik.values.email}
+                  />
+
                   <Field
                     label="First Name"
-                    name="firstName"
+                    name="First Name"
                     value={formik.values.firstName}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
+                    onChange={(event) =>
+                      formik.setFieldValue("firstName", event.target.value)
+                    }
+                    onBlur={() => formik.setFieldTouched("firstName", true)}
                     error={
                       formik.touched.firstName
                         ? formik.errors.firstName
@@ -291,10 +332,12 @@ function Contact() {
 
                   <Field
                     label="Company Name"
-                    name="companyName"
+                    name="Company Name"
                     value={formik.values.companyName}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
+                    onChange={(event) =>
+                      formik.setFieldValue("companyName", event.target.value)
+                    }
+                    onBlur={() => formik.setFieldTouched("companyName", true)}
                     error={
                       formik.touched.companyName
                         ? formik.errors.companyName
@@ -304,35 +347,41 @@ function Contact() {
                   />
 
                   <Field
-                    label="Email Address"
-                    name="email"
-                    type="email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={formik.touched.email ? formik.errors.email : ""}
+                    label="Phone Number"
+                    name="Phone"
+                    type="tel"
+                    value={formik.values.phone}
+                    onChange={(event) =>
+                      formik.setFieldValue("phone", event.target.value)
+                    }
+                    onBlur={() => formik.setFieldTouched("phone", true)}
+                    error={formik.touched.phone ? formik.errors.phone : ""}
                     required
                   />
 
                   <Field
-                    label="Phone Number"
-                    name="phone"
-                    type="tel"
-                    value={formik.values.phone}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={formik.touched.phone ? formik.errors.phone : ""}
+                    label="Email Address"
+                    name="Email"
+                    type="email"
+                    value={formik.values.email}
+                    onChange={(event) =>
+                      formik.setFieldValue("email", event.target.value)
+                    }
+                    onBlur={() => formik.setFieldTouched("email", true)}
+                    error={formik.touched.email ? formik.errors.email : ""}
                     required
                   />
 
                   <div className="sm:col-span-2">
                     <Select
                       label="Service Required"
-                      name="service"
+                      name="Service"
                       options={services}
                       value={formik.values.service}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      onChange={(event) =>
+                        formik.setFieldValue("service", event.target.value)
+                      }
+                      onBlur={() => formik.setFieldTouched("service", true)}
                       error={
                         formik.touched.service ? formik.errors.service : ""
                       }
@@ -347,12 +396,14 @@ function Contact() {
                     </label>
 
                     <textarea
-                      name="message"
+                      name="Message"
                       required
                       rows={6}
                       value={formik.values.message}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
+                      onChange={(event) =>
+                        formik.setFieldValue("message", event.target.value)
+                      }
+                      onBlur={() => formik.setFieldTouched("message", true)}
                       placeholder="Tell us about your business requirement..."
                       className="w-full resize-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/35 focus:border-[var(--brand-orange)]"
                     />
@@ -364,19 +415,13 @@ function Contact() {
                     )}
                   </div>
 
-                  {formError && (
-                    <div className="sm:col-span-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                      {formError}
-                    </div>
-                  )}
-
                   <div className="sm:col-span-2">
                     <button
                       type="submit"
-                      disabled={formik.isSubmitting}
+                      disabled={isSending}
                       className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-orange px-7 py-3.5 font-semibold text-black glow-orange transition-transform duration-300 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                     >
-                      {formik.isSubmitting ? "Sending..." : "Submit Message"}
+                      {isSending ? "Sending..." : "Submit Message"}
                       <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
@@ -503,6 +548,7 @@ function Field({
         onChange={onChange}
         onBlur={onBlur}
         required={required}
+        autoComplete="off"
         className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/35 focus:border-[var(--brand-orange)]"
       />
 
