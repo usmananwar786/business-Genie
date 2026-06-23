@@ -40,7 +40,6 @@ const services = [
   "Web Development",
   "SEO Services",
   "UI/UX Design",
-  // "Business Automation",
   "Other",
 ];
 
@@ -61,9 +60,10 @@ function Contact() {
   const formik = useFormik({
     initialValues: {
       firstName: "",
-      lastName: "",
+      companyName: "",
+       phone: "",
       email: "",
-      phone: "",
+     
       service: "",
       message: "",
     },
@@ -75,8 +75,8 @@ function Contact() {
         errors.firstName = "First name is required";
       }
 
-      if (!values.lastName.trim()) {
-        errors.lastName = "Last name is required";
+      if (!values.companyName.trim()) {
+        errors.companyName = "Company name is required";
       }
 
       if (!values.email.trim()) {
@@ -114,13 +114,15 @@ function Contact() {
             _subject: "New Contact Form Message - Business Genie Consulting",
             _template: "table",
             _captcha: "false",
+            _url: window.location.href,
             _replyto: values.email,
             _autoresponse:
               "Thank you for contacting Business Genie Consulting. Our team has received your message and will contact you shortly.",
             "First Name": values.firstName,
-            "Last Name": values.lastName,
+            "Company Name": values.companyName,
+             Phone: values.phone,
             Email: values.email,
-            Phone: values.phone,
+           
             Service: values.service,
             Message: values.message,
           }),
@@ -128,13 +130,20 @@ function Contact() {
 
         const result = await response.json().catch(() => null);
 
-        if (!response.ok || result?.success === "false") {
+        if (
+          !response.ok ||
+          result?.success === false ||
+          result?.success === "false"
+        ) {
+          console.error("FormSubmit error:", result);
           throw new Error("Form submission failed");
         }
 
         resetForm();
         setSent(true);
       } catch (error) {
+        console.error("Contact form error:", error);
+
         setFormError(
           `Your message could not be sent at the moment. Please try again shortly or email us directly at ${contactEmail}.`
         );
@@ -157,7 +166,6 @@ function Contact() {
         subtitle="Share your requirements with our team. We’ll guide you with the right ERP, HR automation, digital marketing, SEO, website, UI/UX or business automation solution."
       />
 
-      {/* Professional Intro Strip */}
       <Section className="!py-10 sm:!py-12">
         <div className="container-x">
           <motion.div
@@ -214,10 +222,8 @@ function Contact() {
         </div>
       </Section>
 
-      {/* Contact Form + Only 3 Info Boxes */}
       <Section className="!pt-4">
         <div className="container-x grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-10">
-          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: -28 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -257,6 +263,7 @@ function Contact() {
                   </p>
 
                   <button
+                    type="button"
                     onClick={() => setSent(false)}
                     className="mt-6 rounded-full border border-white/10 px-5 py-2.5 text-sm text-white/70 transition hover:border-[var(--brand-orange)]/50 hover:text-[var(--brand-orange)]"
                   >
@@ -283,13 +290,15 @@ function Contact() {
                   />
 
                   <Field
-                    label="Last Name"
-                    name="lastName"
-                    value={formik.values.lastName}
+                    label="Company Name"
+                    name="companyName"
+                    value={formik.values.companyName}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     error={
-                      formik.touched.lastName ? formik.errors.lastName : ""
+                      formik.touched.companyName
+                        ? formik.errors.companyName
+                        : ""
                     }
                     required
                   />
@@ -376,7 +385,6 @@ function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Side: Only 3 Contact Boxes */}
           <motion.div
             initial={{ opacity: 0, x: 28 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -409,7 +417,6 @@ function Contact() {
         </div>
       </Section>
 
-      {/* Original Color Map Section */}
       <Section className="!pt-0 !pb-28">
         <div className="container-x">
           <motion.div
@@ -439,7 +446,7 @@ function Contact() {
               <a
                 href="https://www.google.com/maps/search/?api=1&query=968%20Q%20Block%20Johar%20Town%20Lahore%20Pakistan"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm text-white/75 transition-all duration-300 hover:border-[var(--brand-orange)]/50 hover:text-[var(--brand-orange)]"
               >
                 Open in Google Maps
@@ -571,7 +578,7 @@ function ContactCard({
     <a
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       className={`group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand-orange)]/50 ${
         accent
           ? "border-[var(--brand-orange)]/25 bg-[var(--brand-orange)]/5"
