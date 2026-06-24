@@ -262,9 +262,9 @@ function Hero() {
             transition={{ delay: 0.25, duration: 0.65 }}
             className="mt-6 text-sm sm:text-base md:text-lg text-white/70 max-w-2xl leading-relaxed"
           >
-            Business Genie Consulting helps companies manage operations,
-            automate HRMS, implement ERP systems, improve reporting and grow
-            tHRMSough performance-focused digital marketing.
+          Business Genie Consulting helps businesses streamline operations
+              accelerate transformation, achieve sustainable growth 
+              innovative technology and consulting solutions.
           </motion.p>
 
           <motion.div
@@ -778,7 +778,7 @@ We partner with organizations to streamline operations, improve visibility, and 
                 q: "Umer has a proven track record of success, having worked for several notable companies in the past, including Systems Ltd, Xavor Corporation, and i2C Inc. THRMSoughout his career, he has held various key leadership roles, including Director Strategy and planning and has consistently demonstrated an ability to drive growth, innovation, and profitability.",
                 badge: "Director",
                 status: "Trusted Expert",
-                tags: [ "HRMSMS", "Leadership", "Trainings", ""," AI Automation","ERP",],
+                tags: [ "HRMSMS", "Leadership", "Trainings", "AI Automation","ERP",],
               },
               {
                 img: "/owner-1.jpg",
