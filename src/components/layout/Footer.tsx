@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import {
   Facebook,
   Linkedin,
-  // Instagram,
+   Instagram,
   // Twitter,
   // Youtube,
   Mail,
@@ -46,11 +46,11 @@ const SOCIALS = [
     href: "https://www.linkedin.com/company/104830846/",
     icon: Linkedin,
   },
-  // {
-  //   label: "Instagram",
-  //   href: "#",
-  //   icon: Instagram,
-  // },
+   {
+     label: "Instagram",
+    href: "#",
+   icon: Instagram,
+   },
   // {
   //   label: "Twitter",
   //   href: "#",

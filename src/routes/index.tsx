@@ -142,7 +142,7 @@ function Counter({
 
     const obs = new IntersectionObserver(
       ([e]) => e.isIntersecting && setActive(true),
-      { tHRMSeshold: 0.4 }
+      { threshold: 0.4 }
     );
 
     obs.observe(ref.current);
@@ -591,7 +591,7 @@ We partner with organizations to streamline operations, improve visibility, and 
                 </span>
               </>
             }
-            subtitle="ERP, HRMSMS, marketing, web and design built to work together, not in silos."
+            subtitle="ERP, HRMS, marketing, web and design built to work together, not in silos."
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -778,7 +778,7 @@ We partner with organizations to streamline operations, improve visibility, and 
                 q: "Umer has a proven track record of success, having worked for several notable companies in the past, including Systems Ltd, Xavor Corporation, and i2C Inc. THRMSoughout his career, he has held various key leadership roles, including Director Strategy and planning and has consistently demonstrated an ability to drive growth, innovation, and profitability.",
                 badge: "Director",
                 status: "Trusted Expert",
-                tags: [ "HRMSMS", "Leadership", "Trainings", "AI Automation","ERP",],
+                tags: [ "HRMS", "Leadership", "Trainings", "AI Automation","ERP",],
               },
               {
                 img: "/owner-1.jpg",
@@ -796,7 +796,7 @@ We partner with organizations to streamline operations, improve visibility, and 
                 q: " ERP & HRMS system implementation ,Designing modern websites,  UI/UX systems,  and Workflow automation for scalable business growth.",
                 badge: "Team",
                 status: "Professional Team",
-                tags: [ "ERP", "HRMSMS",  "Automation", "Web", "UI/UX", "Systems Design", , ],
+                tags: [ "ERP", "HRMS",  "Automation", "Web", "UI/UX", "Systems Design", , ],
               },
             ].map((t, i) => (
               <motion.div
