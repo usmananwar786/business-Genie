@@ -36,36 +36,39 @@ const modules = [
     t: "Accounts & Financials",
     d: "Chart of accounts, GL, AP/AR, taxation, reconciliations.",
   },
+   {
+    icon: ShoppingCart,
+    t: "Sales & Purchase",
+    d: "Quotations, orders, invoices, customer managment,  vendor management and reporting.",
+  },
+   {
+    icon: Package,
+    t: "Inventory & Stock",
+    d: "Warehouses,reorder levels, batches & expiry, stock movement, audit alignment.",
+  },
+   {
+    icon: Database,
+    t: "Production & MRP",
+    d: "BOM's, work orders, production tracking, costing.",
+  },
  {
   icon: Briefcase,
   t: "Project Management",
-  d: "Timeline tracking, team collaboration, task assignment, and progress monitoring.",
+  d: "BOQ's, Timeline tracking, team collaboration, task assignment, and progress monitoring.",
 },
-{
-  icon: Receipt, // ya Calculator / Wallet
-  t: "Bookkeeping",
-  d: "Ledger management, expense tracking, invoicing, and financial record-keeping.",
-},
-  {
-    icon: Package,
-    t: "Inventory & Stock",
-    d: "Warehouses, batches, audit alignment, reorder levels.",
-  },
-  {
-    icon: ShoppingCart,
-    t: "Sales & Purchase",
-    d: "Quotations, orders, invoices, vendor management.",
-  },
+// {
+//   icon: Receipt, // ya Calculator / Wallet
+//   t: "Bookkeeping",
+//   d: "Ledger management, expense tracking, invoicing, and financial record-keeping.",
+// },
+ 
+ 
   {
     icon: Users,
     t: "HR & Payroll",
-    d: "Employees, attendance, payroll cycles, leave management.",
+    d: "Employees, attendance,leave management, payroll cycles, reimbursement.",
   },
-  {
-    icon: Database,
-    t: "Production & MRP",
-    d: "BOMs, work orders, production tracking, costing.",
-  },
+ 
   {
     icon: BarChart3,
     t: "Reporting Dashboards",
@@ -75,7 +78,7 @@ const modules = [
 
 const includes = [
   "Complete ERP setup and configuration",
-  "BOMs, work orders, production tracking, costing",
+  "BOM's, work orders, production tracking, costing",
 
   "Accounts and financial structuring",
   "Inventory and stock audit alignment",

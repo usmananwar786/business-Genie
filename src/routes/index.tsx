@@ -296,9 +296,9 @@ function Hero() {
             className="mt-9 grid sm:grid-cols-3 gap-3 max-w-2xl"
           >
             {[
-              ["ERP Systems", "Accounts, inventory, sales & reporting"],
-              ["HRMS Automation", "Payroll, attendance & employee records"],
-              ["Digital Marketing", "SEO, ads, leads & online growth"],
+              ["ERP Systems", "Accounts, Sales & Purchase, Inventory, Production & Reporting"],
+              ["HRMS Automation", " Recruitment, Employee Records, Attendance & Payroll"],
+              ["Digital Marketing", "SEO,  Google Ads, Lead Generation, and Digital Growth Solutions"],
             ].map(([title, text]) => (
               <div
                 key={title}
@@ -388,8 +388,7 @@ function Hero() {
                   HRMS Automation
                 </div>
                 <div className="text-xs text-white/55">
-                  Payroll, attendance & employee records
-                </div>
+Recruitment, Employee Records, Attendance & Payroll                </div>
               </div>
             </div>
 
@@ -450,7 +449,7 @@ function Hero() {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-xs flex flex-col items-center gap-2"
       >
         <span className="hover:text-[var(--brand-orange)] transition-colors duration-300">
-          Scroll
+        
         </span>
         <div className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
       </motion.div>
@@ -528,9 +527,9 @@ function Home() {
 
             <div className="mt-5 sm:mt-6 space-y-4 text-sm sm:text-base md:text-lg 2xl:text-xl leading-relaxed text-white/70">
               <p>
-                Business Genie Consulting helps companies transform fragmented, manual processes into structured, automated, and scalable digital ecosystems.
+                Business Genie Consulting helps companies transform fragmented manual processes into structured, automated, and scalable digital ecosystems.
 
-We partner with organizations to streamline operations, improve visibility, and drive sustainable growth tHRMSough a comprehensive range of technology and business consulting services. Our expertise spans ERP implementation, HRMS automation, digital marketing, SEO, web development, UI/UX design, and business process optimization.
+We partner with organizations to streamline operations, improve visibility, and drive sustainable growth. 
               </p>
 
               <p>
@@ -563,7 +562,7 @@ We partner with organizations to streamline operations, improve visibility, and 
                 "Practical",
                 "Result-focused",
                 "Long-term support",
-                "Transparent",
+                // "Transparent",
                 "Scalable",
               ].map((t) => (
                 <span
