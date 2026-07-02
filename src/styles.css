@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+/* @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
@@ -163,4 +163,1512 @@
 @utility animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
+} */
+/* =====================================================
+   01. TAILWIND IMPORTS
+===================================================== */
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+
+/* =====================================================
+   02. TAILWIND THEME TOKENS
+===================================================== */
+
+@theme inline {
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  /* Base Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Cards */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Popover */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Primary */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* Secondary */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* Muted */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Accent */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* Destructive */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Border / Input / Ring */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand Colors */
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-dark: var(--brand-orange-dark);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-brand-black: var(--brand-black);
+
+  /* Fonts */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+
+/* =====================================================
+   03. DEFAULT THEME
+   Original: Black + Orange
+===================================================== */
+
+:root {
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* ShadCN / Tailwind Base */
+  --background: oklch(0.13 0.01 240);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.18 0.015 240);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.18 0.015 240);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.74 0.18 50);
+  --primary-foreground: oklch(0.1 0 0);
+
+  --secondary: oklch(0.22 0.015 240);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.22 0.015 240);
+  --muted-foreground: oklch(0.72 0.01 240);
+
+  --accent: oklch(0.7 0.12 195);
+  --accent-foreground: oklch(0.1 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.74 0.18 50);
+
+  /* Brand */
+  --brand-black: #050505;
+  --brand-charcoal: #2b2d30;
+  --brand-orange: #ff8a00;
+  --brand-orange-dark: #e66f00;
+  --brand-teal: #16b8b5;
+
+  /* Website Layout */
+  --site-bg: #050505;
+  --site-bg-soft: #0a0f10;
+  --site-card-bg: rgba(255, 255, 255, 0.04);
+  --site-card-bg-strong: rgba(255, 255, 255, 0.08);
+  --site-card-border: rgba(255, 255, 255, 0.1);
+
+  --site-text: #ffffff;
+  --site-text-muted: rgba(255, 255, 255, 0.72);
+
+  /* Header / Navbar */
+  --header-bg: rgba(5, 5, 5, 0.2);
+  --header-bg-scrolled: rgba(5, 5, 5, 0.88);
+  --header-border: rgba(255, 255, 255, 0.1);
+
+  --nav-text: rgba(255, 255, 255, 0.85);
+  --nav-muted: rgba(255, 255, 255, 0.75);
+  --nav-hover-bg: rgba(255, 255, 255, 0.05);
+
+  /* Dropdown */
+  --dropdown-bg: rgba(10, 10, 10, 0.96);
+  --dropdown-text: #ffffff;
+  --dropdown-muted: rgba(255, 255, 255, 0.55);
+
+  /* Social Icons */
+  --social-bg: rgba(255, 255, 255, 0.04);
+  --social-hover-bg: rgba(255, 138, 0, 0.1);
+
+  /* Mobile Menu */
+  --mobile-menu-bg: rgba(5, 5, 5, 0.97);
+
+  /* Gradients */
+  --gradient-hero:
+    radial-gradient(
+      ellipse at top left,
+      rgba(22, 184, 181, 0.18),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(255, 138, 0, 0.18),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      #050505 0%,
+      #0a0f10 100%
+    );
+
+  --gradient-orange:
+    linear-gradient(
+      135deg,
+      #ff8a00 0%,
+      #e66f00 100%
+    );
+
+  --gradient-teal:
+    linear-gradient(
+      135deg,
+      #16b8b5 0%,
+      #0a8b88 100%
+    );
+
+  --gradient-split:
+    linear-gradient(
+      90deg,
+      #050505 0%,
+      #050505 50%,
+      #0d3a39 100%
+    );
+
+  /* Shadows */
+  --shadow-orange-glow: 0 10px 40px -10px rgba(255, 138, 0, 0.45);
+  --shadow-teal-glow: 0 10px 40px -10px rgba(22, 184, 181, 0.45);
+  --shadow-card: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+
+/* =====================================================
+   04. CREAM THEME
+   Toggle Right: Off-white + Orange
+===================================================== */
+
+body.cream-theme {
+  /* ShadCN / Tailwind Base */
+  --background: oklch(0.91 0.025 85);
+  --foreground: oklch(0.19 0.015 65);
+
+  --card: oklch(0.96 0.018 85);
+  --card-foreground: oklch(0.19 0.015 65);
+
+  --popover: oklch(0.97 0.015 85);
+  --popover-foreground: oklch(0.19 0.015 65);
+
+  --primary: oklch(0.74 0.18 50);
+  --primary-foreground: oklch(0.1 0 0);
+
+  --secondary: oklch(0.84 0.025 85);
+  --secondary-foreground: oklch(0.19 0.015 65);
+
+  --muted: oklch(0.86 0.02 85);
+  --muted-foreground: oklch(0.43 0.02 65);
+
+  --accent: oklch(0.74 0.18 50);
+  --accent-foreground: oklch(0.1 0 0);
+
+  --border: oklch(0.25 0.01 65 / 14%);
+  --input: oklch(0.25 0.01 65 / 14%);
+  --ring: oklch(0.74 0.18 50);
+
+  /* Brand */
+  --brand-black: #e8e4da;
+  --brand-charcoal: #d1ccc0;
+  --brand-orange: #ff8a00;
+  --brand-orange-dark: #e66f00;
+  --brand-teal: #adadaa;
+
+  /* Website Layout */
+  --site-bg: #e8e4da;
+  --site-bg-soft: #d6d1c5;
+  --site-card-bg: rgba(255, 255, 255, 0.48);
+  --site-card-bg-strong: rgba(255, 255, 255, 0.72);
+  --site-card-border: rgba(21, 18, 13, 0.12);
+
+  --site-text: #15120d;
+  --site-text-muted: rgba(21, 18, 13, 0.68);
+
+  /* Header / Navbar */
+  --header-bg: rgba(232, 228, 218, 0.72);
+  --header-bg-scrolled: rgba(232, 228, 218, 0.95);
+  --header-border: rgba(21, 18, 13, 0.12);
+
+  --nav-text: rgba(21, 18, 13, 0.88);
+  --nav-muted: rgba(21, 18, 13, 0.68);
+  --nav-hover-bg: rgba(255, 138, 0, 0.09);
+
+  /* Dropdown */
+  --dropdown-bg: rgba(248, 244, 235, 0.98);
+  --dropdown-text: #15120d;
+  --dropdown-muted: rgba(21, 18, 13, 0.58);
+
+  /* Social Icons */
+  --social-bg: rgba(21, 18, 13, 0.04);
+  --social-hover-bg: rgba(255, 138, 0, 0.14);
+
+  /* Mobile Menu */
+  --mobile-menu-bg: rgba(248, 244, 235, 0.98);
+
+  /* Gradients */
+  --gradient-hero:
+    radial-gradient(
+      ellipse at top left,
+      rgba(255, 138, 0, 0.14),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(173, 173, 170, 0.55),
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      #e8e4da 0%,
+      #d6d1c5 100%
+    );
+
+  --gradient-orange:
+    linear-gradient(
+      135deg,
+      #ff8a00 0%,
+      #e66f00 100%
+    );
+
+  --gradient-teal:
+    linear-gradient(
+      135deg,
+      #d6d1c5 0%,
+      #adadaa 100%
+    );
+
+  --gradient-split:
+    linear-gradient(
+      90deg,
+      #e8e4da 0%,
+      #e8e4da 55%,
+      #d1ccc0 100%
+    );
+
+  /* Shadows */
+  --shadow-orange-glow: 0 10px 40px -10px rgba(255, 138, 0, 0.35);
+  --shadow-teal-glow: 0 10px 40px -10px rgba(21, 18, 13, 0.12);
+  --shadow-card: 0 20px 60px -20px rgba(21, 18, 13, 0.22);
+}
+
+
+/* =====================================================
+   05. BASE STYLES
+===================================================== */
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--site-bg);
+    color: var(--site-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      opacity,
+      transform,
+      box-shadow;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+  }
+
+  ::selection {
+    background: var(--brand-orange);
+    color: #000000;
+  }
+}
+
+
+/* =====================================================
+   06. CUSTOM UTILITIES
+===================================================== */
+
+@utility container-x {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility text-gradient-orange {
+  background: var(--gradient-orange);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-teal {
+  background: linear-gradient(
+    135deg,
+    var(--brand-teal),
+    #5cf0ed
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body.cream-theme .text-gradient-teal {
+  background: linear-gradient(
+    135deg,
+    #15120d,
+    #adadaa
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
+@utility bg-gradient-orange {
+  background: var(--gradient-orange);
+}
+
+@utility bg-gradient-teal {
+  background: var(--gradient-teal);
+}
+
+@utility bg-gradient-split {
+  background: var(--gradient-split);
+}
+
+@utility glass-card {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 1rem;
+}
+
+body.cream-theme .glass-card {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.66),
+    rgba(255, 255, 255, 0.28)
+  ) !important;
+  border-color: var(--site-card-border) !important;
+}
+
+@utility glow-orange {
+  box-shadow: var(--shadow-orange-glow);
+}
+
+@utility glow-teal {
+  box-shadow: var(--shadow-teal-glow);
+}
+
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(100%);
+  }
+}
+
+
+/* =====================================================
+   07. CREAM THEME GLOBAL OVERRIDES
+   Hard-coded classes fix
+===================================================== */
+
+body.cream-theme main,
+body.cream-theme .site-layout,
+body.cream-theme .page-wrapper,
+body.cream-theme .min-h-screen {
+  background-color: var(--site-bg) !important;
+  color: var(--site-text) !important;
+}
+
+/* Dark background classes */
+body.cream-theme .bg-black,
+body.cream-theme .bg-\[\#000\],
+body.cream-theme .bg-\[\#050505\],
+body.cream-theme .bg-\[\#0a0a0a\],
+body.cream-theme .bg-\[\#0a0f10\],
+body.cream-theme .bg-\[var\(--brand-black\)\],
+body.cream-theme .bg-\[var\(--brand-charcoal\)\] {
+  background-color: var(--site-bg) !important;
+}
+
+/* White transparent card backgrounds */
+body.cream-theme .bg-white\/5,
+body.cream-theme .bg-white\/10,
+body.cream-theme .bg-white\/\[0\.02\],
+body.cream-theme .bg-white\/\[0\.03\],
+body.cream-theme .bg-white\/\[0\.04\],
+body.cream-theme .bg-white\/\[0\.05\],
+body.cream-theme .bg-white\/\[0\.06\],
+body.cream-theme .bg-white\/\[0\.08\],
+body.cream-theme .bg-white\/\[0\.1\] {
+  background-color: var(--site-card-bg) !important;
+}
+
+/* Dark rgba backgrounds */
+body.cream-theme .bg-\[rgba\(5\,5\,5\,0\.20\)\],
+body.cream-theme .bg-\[rgba\(5\,5\,5\,0\.88\)\],
+body.cream-theme .bg-\[rgba\(5\,5\,5\,0\.97\)\],
+body.cream-theme .bg-\[rgba\(10\,10\,10\,0\.96\)\] {
+  background-color: var(--site-card-bg-strong) !important;
+}
+
+/* White text to dark text */
+body.cream-theme .text-white,
+body.cream-theme .text-white\/95,
+body.cream-theme .text-white\/90,
+body.cream-theme .text-white\/85,
+body.cream-theme .text-white\/80,
+body.cream-theme .text-white\/75 {
+  color: var(--site-text) !important;
+}
+
+/* Muted white text */
+body.cream-theme .text-white\/70,
+body.cream-theme .text-white\/65,
+body.cream-theme .text-white\/60,
+body.cream-theme .text-white\/55,
+body.cream-theme .text-white\/50,
+body.cream-theme .text-white\/45,
+body.cream-theme .text-white\/40 {
+  color: var(--site-text-muted) !important;
+}
+
+/* Border colors */
+body.cream-theme .border-white\/5,
+body.cream-theme .border-white\/10,
+body.cream-theme .border-white\/15,
+body.cream-theme .border-white\/20 {
+  border-color: var(--site-card-border) !important;
+}
+
+/* Ring colors */
+body.cream-theme .ring-white\/10,
+body.cream-theme .ring-white\/15,
+body.cream-theme .ring-white\/20 {
+  --tw-ring-color: var(--site-card-border) !important;
+}
+
+/* Keep orange same */
+body.cream-theme .text-\[var\(--brand-orange\)\] {
+  color: var(--brand-orange) !important;
+}
+
+.bg-gradient-orange,
+body.cream-theme .bg-gradient-orange {
+  background: var(--gradient-orange) !important;
+}
+
+/* Section safety */
+body.cream-theme section,
+body.cream-theme article,
+body.cream-theme aside,
+body.cream-theme header,
+body.cream-theme footer {
+  color: var(--site-text);
+}
+
+/* Forms */
+body.cream-theme input,
+body.cream-theme textarea,
+body.cream-theme select {
+  background-color: rgba(255, 255, 255, 0.55);
+  color: var(--site-text);
+  border-color: var(--site-card-border);
+}
+
+body.cream-theme input::placeholder,
+body.cream-theme textarea::placeholder {
+  color: rgba(21, 18, 13, 0.48);
+}
+
+
+/* =====================================================
+   08. ANIMATIONS
+===================================================== */
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 138, 0, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 40px 10px rgba(255, 138, 0, 0.15);
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+
+/* =====================================================
+   09. ANIMATION UTILITIES
+===================================================== */
+
+@utility animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@utility animate-blob {
+  animation: blob 14s ease-in-out infinite;
+}
+
+@utility animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* =====================================================
+   HERO DARK SECTION FIX
+   Cream theme me hero ka text white hi rahe
+===================================================== */
+
+body.cream-theme .hero-force-white {
+  background-color: #050505 !important;
+  color: #ffffff !important;
+}
+
+body.cream-theme .hero-force-white h1,
+body.cream-theme .hero-force-white h2,
+body.cream-theme .hero-force-white h3,
+body.cream-theme .hero-force-white h4,
+body.cream-theme .hero-force-white h5,
+body.cream-theme .hero-force-white h6,
+body.cream-theme .hero-force-white p,
+body.cream-theme .hero-force-white span,
+body.cream-theme .hero-force-white li,
+body.cream-theme .hero-force-white a,
+body.cream-theme .hero-force-white div {
+  color: #ffffff !important;
+}
+
+/* Hero ke andar white opacity text bhi readable rahe */
+body.cream-theme .hero-force-white .text-white,
+body.cream-theme .hero-force-white .text-white\/95,
+body.cream-theme .hero-force-white .text-white\/90,
+body.cream-theme .hero-force-white .text-white\/85,
+body.cream-theme .hero-force-white .text-white\/80,
+body.cream-theme .hero-force-white .text-white\/75,
+body.cream-theme .hero-force-white .text-white\/70,
+body.cream-theme .hero-force-white .text-white\/65,
+body.cream-theme .hero-force-white .text-white\/60,
+body.cream-theme .hero-force-white .text-white\/55,
+body.cream-theme .hero-force-white .text-white\/50 {
+  color: #ffffff !important;
+}
+
+/* Orange text orange hi rahe */
+body.cream-theme .hero-force-white .text-\[var\(--brand-orange\)\],
+body.cream-theme .hero-force-white .text-brand-orange {
+  color: var(--brand-orange) !important;
+}
+
+/* Top badge agar white/off-white background me hai to uska text dark rahe */
+body.cream-theme .hero-force-white .badge-light,
+body.cream-theme .hero-force-white .badge-light * {
+  color: #15120d !important;
+}
+
+/* =====================================================
+   DIGITAL MARKETING HERO THEME FIX
+   Black theme: same old dark look
+   Cream theme: off-white hero look
+===================================================== */
+
+/* Default black theme */
+:root {
+  --dm-hero-bg: #050505;
+
+  --dm-hero-overlay-1: rgba(5, 5, 5, 0.62);
+  --dm-hero-overlay-2: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.45),
+    rgba(5, 5, 5, 0.45),
+    #050505
+  );
+  --dm-hero-overlay-3: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 0.7),
+    transparent,
+    rgba(5, 5, 5, 0.7)
+  );
+
+  --dm-hero-grid-opacity: 0.045;
+  --dm-hero-grid-color: rgba(255, 255, 255, 0.45);
+
+  --dm-hero-title: #ffffff;
+  --dm-hero-desc: rgba(255, 255, 255, 0.7);
+
+  --dm-hero-badge-bg: rgba(255, 255, 255, 0.04);
+  --dm-hero-badge-border: rgba(255, 255, 255, 0.15);
+  --dm-hero-badge-text: rgba(255, 255, 255, 0.8);
+
+  --dm-hero-outline-border: rgba(255, 255, 255, 0.2);
+  --dm-hero-outline-text: #ffffff;
+  --dm-hero-outline-hover: rgba(255, 255, 255, 0.05);
+
+  --dm-hero-card-bg: rgba(255, 255, 255, 0.04);
+  --dm-hero-card-hover: rgba(255, 255, 255, 0.07);
+  --dm-hero-card-border: rgba(255, 255, 255, 0.1);
+  --dm-hero-card-text: #ffffff;
+}
+
+/* Cream/off-white theme */
+body.cream-theme {
+  --dm-hero-bg: #e8e4da;
+
+  --dm-hero-overlay-1: rgba(232, 228, 218, 0.72);
+  --dm-hero-overlay-2: linear-gradient(
+    to bottom,
+    rgba(232, 228, 218, 0.72),
+    rgba(232, 228, 218, 0.86),
+    #e8e4da
+  );
+  --dm-hero-overlay-3: linear-gradient(
+    to right,
+    rgba(232, 228, 218, 0.92),
+    rgba(232, 228, 218, 0.58),
+    rgba(232, 228, 218, 0.92)
+  );
+
+  --dm-hero-grid-opacity: 0.14;
+  --dm-hero-grid-color: rgba(21, 18, 13, 0.18);
+
+  --dm-hero-title: #15120d;
+  --dm-hero-desc: rgba(21, 18, 13, 0.68);
+
+  --dm-hero-badge-bg: rgba(255, 255, 255, 0.55);
+  --dm-hero-badge-border: rgba(21, 18, 13, 0.14);
+  --dm-hero-badge-text: rgba(21, 18, 13, 0.78);
+
+  --dm-hero-outline-border: rgba(21, 18, 13, 0.18);
+  --dm-hero-outline-text: #15120d;
+  --dm-hero-outline-hover: rgba(255, 138, 0, 0.1);
+
+  --dm-hero-card-bg: rgba(255, 255, 255, 0.48);
+  --dm-hero-card-hover: rgba(255, 255, 255, 0.66);
+  --dm-hero-card-border: rgba(21, 18, 13, 0.12);
+  --dm-hero-card-text: #15120d;
+}
+
+/* Video black ko cream theme me soft/light karne ke liye */
+.dm-hero-video {
+  opacity: 0.55;
+  filter: none;
+}
+
+body.cream-theme .dm-hero-video {
+  opacity: 0.18;
+  filter: grayscale(1) brightness(1.45) contrast(0.75);
+}
+
+/* Global cream text override se is hero ke colors kharab na hon */
+body.cream-theme .dm-hero-light,
+body.cream-theme .dm-hero-light h1,
+body.cream-theme .dm-hero-light h2,
+body.cream-theme .dm-hero-light p,
+body.cream-theme .dm-hero-light span,
+body.cream-theme .dm-hero-light div,
+body.cream-theme .dm-hero-light a {
+  color: inherit;
+}
+
+/* Hero ke orange gradient ko same rakho */
+body.cream-theme .dm-hero-light .text-gradient-orange {
+  background: var(--gradient-orange) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+/* =====================================================
+   SEO HERO THEME FIX
+   Black theme: old dark look
+   Cream theme: off-white hero look
+===================================================== */
+
+/* Default black/original theme */
+:root {
+  --seo-hero-bg: #050505;
+
+  --seo-hero-overlay-1: rgba(5, 5, 5, 0.62);
+
+  --seo-hero-overlay-2: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.35),
+    rgba(5, 5, 5, 0.48),
+    #050505
+  );
+
+  --seo-hero-overlay-3: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 0.75),
+    rgba(5, 5, 5, 0.15),
+    rgba(5, 5, 5, 0.75)
+  );
+
+  --seo-hero-grid-opacity: 0.045;
+  --seo-hero-grid-color: rgba(255, 255, 255, 0.45);
+
+  --seo-hero-title: #ffffff;
+  --seo-hero-desc: rgba(255, 255, 255, 0.7);
+
+  --seo-hero-badge-bg: rgba(255, 255, 255, 0.04);
+  --seo-hero-badge-border: rgba(255, 255, 255, 0.15);
+  --seo-hero-badge-text: rgba(255, 255, 255, 0.8);
+
+  --seo-hero-outline-border: rgba(255, 255, 255, 0.2);
+  --seo-hero-outline-text: #ffffff;
+  --seo-hero-outline-hover: rgba(255, 255, 255, 0.05);
+
+  --seo-hero-card-bg: rgba(255, 255, 255, 0.04);
+  --seo-hero-card-hover: rgba(255, 255, 255, 0.07);
+  --seo-hero-card-border: rgba(255, 255, 255, 0.1);
+  --seo-hero-card-text: #ffffff;
+}
+
+/* Cream/off-white theme */
+body.cream-theme {
+  --seo-hero-bg: #e8e4da;
+
+  --seo-hero-overlay-1: rgba(232, 228, 218, 0.74);
+
+  --seo-hero-overlay-2: linear-gradient(
+    to bottom,
+    rgba(232, 228, 218, 0.72),
+    rgba(232, 228, 218, 0.88),
+    #e8e4da
+  );
+
+  --seo-hero-overlay-3: linear-gradient(
+    to right,
+    rgba(232, 228, 218, 0.94),
+    rgba(232, 228, 218, 0.58),
+    rgba(232, 228, 218, 0.94)
+  );
+
+  --seo-hero-grid-opacity: 0.14;
+  --seo-hero-grid-color: rgba(21, 18, 13, 0.18);
+
+  --seo-hero-title: #15120d;
+  --seo-hero-desc: rgba(21, 18, 13, 0.68);
+
+  --seo-hero-badge-bg: rgba(255, 255, 255, 0.58);
+  --seo-hero-badge-border: rgba(21, 18, 13, 0.14);
+  --seo-hero-badge-text: rgba(21, 18, 13, 0.78);
+
+  --seo-hero-outline-border: rgba(21, 18, 13, 0.18);
+  --seo-hero-outline-text: #15120d;
+  --seo-hero-outline-hover: rgba(255, 138, 0, 0.1);
+
+  --seo-hero-card-bg: rgba(255, 255, 255, 0.48);
+  --seo-hero-card-hover: rgba(255, 255, 255, 0.66);
+  --seo-hero-card-border: rgba(21, 18, 13, 0.12);
+  --seo-hero-card-text: #15120d;
+}
+
+/* Video effect */
+.seo-hero-video {
+  opacity: 0.35;
+  filter: none;
+}
+
+body.cream-theme .seo-hero-video {
+  opacity: 0.18;
+  filter: grayscale(1) brightness(1.45) contrast(0.75);
+}
+
+/* Global cream text override se SEO hero ke colors kharab na hon */
+body.cream-theme .seo-hero-light,
+body.cream-theme .seo-hero-light h1,
+body.cream-theme .seo-hero-light h2,
+body.cream-theme .seo-hero-light p,
+body.cream-theme .seo-hero-light span,
+body.cream-theme .seo-hero-light div,
+body.cream-theme .seo-hero-light a {
+  color: inherit;
+}
+
+/* SEO hero ke orange gradient ko same rakho */
+body.cream-theme .seo-hero-light .text-gradient-orange {
+  background: var(--gradient-orange) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+/* =====================================================
+   WEB DEVELOPMENT FLIP CARD FIX
+   Hover/rotate back side text and cards
+===================================================== */
+
+/* Black/original theme */
+:root {
+  --web-flip-back-bg: #101010;
+  --web-flip-back-border: rgba(255, 138, 0, 0.4);
+
+  --web-flip-title: #ffffff;
+  --web-flip-desc: rgba(255, 255, 255, 0.65);
+
+  --web-flip-card-border: rgba(255, 255, 255, 0.1);
+  --web-flip-point-bg: rgba(255, 255, 255, 0.04);
+  --web-flip-point-text: rgba(255, 255, 255, 0.75);
+
+  --web-flip-tag-bg: rgba(0, 0, 0, 0.3);
+  --web-flip-tag-text: rgba(255, 255, 255, 0.65);
+}
+
+/* Cream/off-white theme */
+body.cream-theme {
+  --web-flip-back-bg: rgba(255, 255, 255, 0.62);
+  --web-flip-back-border: rgba(255, 138, 0, 0.45);
+
+  --web-flip-title: #15120d;
+  --web-flip-desc: rgba(21, 18, 13, 0.68);
+
+  --web-flip-card-border: rgba(21, 18, 13, 0.12);
+  --web-flip-point-bg: rgba(255, 255, 255, 0.55);
+  --web-flip-point-text: rgba(21, 18, 13, 0.76);
+
+  --web-flip-tag-bg: rgba(255, 255, 255, 0.55);
+  --web-flip-tag-text: rgba(21, 18, 13, 0.68);
+}
+
+/* Global cream override se flip card ke colors disturb na hon */
+body.cream-theme .web-flip-section,
+body.cream-theme .web-flip-section h2,
+body.cream-theme .web-flip-section h3,
+body.cream-theme .web-flip-section p,
+body.cream-theme .web-flip-section span,
+body.cream-theme .web-flip-section div,
+body.cream-theme .web-flip-section a {
+  color: inherit;
+}
+
+/* Front image side dark hi rahe, taki image par text readable rahe */
+body.cream-theme .web-flip-section .bg-gradient-to-t {
+  color: #ffffff !important;
+}
+
+/* Front side title/short text white hi rahe */
+body.cream-theme .web-flip-section .group h3.text-white,
+body.cream-theme .web-flip-section .group p.text-white\/70 {
+  color: #ffffff !important;
+}
+
+/* Orange gradient text same rahe */
+body.cream-theme .web-flip-section .text-gradient-orange {
+  background: var(--gradient-orange) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Orange button ke andar text black readable rahe */
+body.cream-theme .web-flip-section .bg-gradient-orange,
+body.cream-theme .web-flip-section .bg-gradient-orange * {
+  color: #15120d !important;
+}
+/* =====================================================
+   HOME / INDEX HERO THEME FIX
+   Black theme: original dark video look
+   Cream theme: off-white hero with video still visible
+===================================================== */
+
+/* Black / original theme */
+:root {
+  --home-hero-bg: #050505;
+
+  --home-hero-overlay-1: rgba(5, 5, 5, 0.55);
+
+  --home-hero-overlay-2: linear-gradient(
+    to right,
+    #050505,
+    rgba(5, 5, 5, 0.8),
+    rgba(5, 5, 5, 0.5)
+  );
+
+  --home-hero-overlay-3: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.3),
+    transparent,
+    #050505
+  );
+
+  --home-hero-grid-opacity: 0.045;
+  --home-hero-grid-color: rgba(255, 255, 255, 0.45);
+
+  --home-hero-title: #ffffff;
+  --home-hero-desc: rgba(255, 255, 255, 0.7);
+
+  --home-hero-badge-bg: rgba(255, 255, 255, 0.04);
+  --home-hero-badge-border: rgba(255, 255, 255, 0.15);
+  --home-hero-badge-text: rgba(255, 255, 255, 0.8);
+
+  --home-hero-outline-border: rgba(255, 255, 255, 0.2);
+  --home-hero-outline-text: #ffffff;
+  --home-hero-outline-hover: rgba(255, 255, 255, 0.05);
+
+  --home-hero-card-bg: rgba(255, 255, 255, 0.04);
+  --home-hero-card-hover: rgba(255, 255, 255, 0.07);
+  --home-hero-card-border: rgba(255, 255, 255, 0.1);
+  --home-hero-card-title: #ffffff;
+  --home-hero-card-desc: rgba(255, 255, 255, 0.55);
+
+  --home-hero-small-text: rgba(255, 255, 255, 0.65);
+  --home-hero-check: rgba(255, 255, 255, 0.7);
+
+  --home-hero-floating-bg: rgba(255, 255, 255, 0.05);
+  --home-hero-floating-border: rgba(255, 255, 255, 0.1);
+  --home-hero-floating-title: #ffffff;
+  --home-hero-floating-muted: rgba(255, 255, 255, 0.55);
+  --home-hero-mini-bg: rgba(255, 255, 255, 0.05);
+
+  --home-hero-scroll: rgba(255, 255, 255, 0.4);
+}
+
+/* Cream / off-white theme */
+body.cream-theme {
+  --home-hero-bg: #e8e4da;
+
+  --home-hero-overlay-1: rgba(232, 228, 218, 0.74);
+
+  --home-hero-overlay-2: linear-gradient(
+    to right,
+    rgba(232, 228, 218, 0.96),
+    rgba(232, 228, 218, 0.84),
+    rgba(232, 228, 218, 0.72)
+  );
+
+  --home-hero-overlay-3: linear-gradient(
+    to bottom,
+    rgba(232, 228, 218, 0.5),
+    rgba(232, 228, 218, 0.62),
+    #e8e4da
+  );
+
+  --home-hero-grid-opacity: 0.14;
+  --home-hero-grid-color: rgba(21, 18, 13, 0.18);
+
+  --home-hero-title: #15120d;
+  --home-hero-desc: rgba(21, 18, 13, 0.72);
+
+  --home-hero-badge-bg: rgba(255, 255, 255, 0.56);
+  --home-hero-badge-border: rgba(21, 18, 13, 0.14);
+  --home-hero-badge-text: rgba(21, 18, 13, 0.78);
+
+  --home-hero-outline-border: rgba(21, 18, 13, 0.18);
+  --home-hero-outline-text: #15120d;
+  --home-hero-outline-hover: rgba(255, 138, 0, 0.1);
+
+  --home-hero-card-bg: rgba(255, 255, 255, 0.48);
+  --home-hero-card-hover: rgba(255, 255, 255, 0.68);
+  --home-hero-card-border: rgba(21, 18, 13, 0.12);
+  --home-hero-card-title: #15120d;
+  --home-hero-card-desc: rgba(21, 18, 13, 0.62);
+
+  --home-hero-small-text: rgba(21, 18, 13, 0.68);
+  --home-hero-check: rgba(21, 18, 13, 0.55);
+
+  --home-hero-floating-bg: rgba(255, 255, 255, 0.5);
+  --home-hero-floating-border: rgba(21, 18, 13, 0.12);
+  --home-hero-floating-title: #15120d;
+  --home-hero-floating-muted: rgba(21, 18, 13, 0.58);
+  --home-hero-mini-bg: rgba(255, 255, 255, 0.5);
+
+  --home-hero-scroll: rgba(21, 18, 13, 0.4);
+}
+
+/* Video black theme */
+.home-hero-video {
+  opacity: 0.6;
+  filter: none;
+}
+
+/* Cream theme par video rahegi, bas soft/light ho jayegi */
+body.cream-theme .home-hero-video {
+  opacity: 0.16;
+  filter: grayscale(1) brightness(1.45) contrast(0.78);
+}
+
+/* Global cream override is hero ke colors ko disturb na kare */
+body.cream-theme .home-hero-light,
+body.cream-theme .home-hero-light h1,
+body.cream-theme .home-hero-light h2,
+body.cream-theme .home-hero-light h3,
+body.cream-theme .home-hero-light p,
+body.cream-theme .home-hero-light span,
+body.cream-theme .home-hero-light div,
+body.cream-theme .home-hero-light a {
+  color: inherit;
+}
+
+/* Orange gradient same rahe */
+body.cream-theme .home-hero-light .text-gradient-orange {
+  background: var(--gradient-orange) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Orange buttons ke andar text black readable rahe */
+body.cream-theme .home-hero-light .bg-gradient-orange,
+body.cream-theme .home-hero-light .bg-gradient-orange * {
+  color: #15120d !important;
+}
+/* =====================================================
+   FOOTER THEME + LOGO SWITCH FIX
+   Black theme: logo2.png
+   Cream theme: logo3.png
+===================================================== */
+
+/* Black / original footer */
+:root {
+  --footer-heading: #ffffff;
+  --footer-text: rgba(255, 255, 255, 0.8);
+  --footer-muted: rgba(255, 255, 255, 0.68);
+  --footer-soft: rgba(255, 255, 255, 0.55);
+
+  --footer-border: rgba(255, 255, 255, 0.1);
+  --footer-social-bg: rgba(255, 255, 255, 0.05);
+
+  --footer-glow-one: rgba(22, 184, 181, 0.3);
+  --footer-glow-two: rgba(255, 138, 0, 0.15);
+}
+
+/* Cream / off-white footer */
+body.cream-theme {
+  --footer-heading: #15120d;
+  --footer-text: rgba(21, 18, 13, 0.82);
+  --footer-muted: rgba(21, 18, 13, 0.68);
+  --footer-soft: rgba(21, 18, 13, 0.55);
+
+  --footer-border: rgba(21, 18, 13, 0.12);
+  --footer-social-bg: rgba(255, 255, 255, 0.5);
+
+  --footer-glow-one: rgba(173, 173, 170, 0.35);
+  --footer-glow-two: rgba(255, 138, 0, 0.12);
+}
+
+/* Logo 2 default show */
+.footer-logo-dark {
+  opacity: 1;
+}
+
+.footer-logo-cream {
+  opacity: 0;
+}
+
+/* Cream theme me logo3 show */
+body.cream-theme .footer-logo-dark {
+  opacity: 0;
+}
+
+body.cream-theme .footer-logo-cream {
+  opacity: 1;
+}
+
+/* Same logo size always */
+.footer-logo-wrap,
+.footer-logo-dark,
+.footer-logo-cream {
+  height: 56px;
+  width: 220px;
+}
+
+/* Cream theme me footer text global override se kharab na ho */
+body.cream-theme .site-footer,
+body.cream-theme .site-footer h4,
+body.cream-theme .site-footer p,
+body.cream-theme .site-footer span,
+body.cream-theme .site-footer a,
+body.cream-theme .site-footer li,
+body.cream-theme .site-footer div {
+  color: inherit;
+}
+
+/* Footer orange gradient same rahe */
+body.cream-theme .site-footer .bg-gradient-orange,
+body.cream-theme .site-footer .bg-gradient-orange * {
+  color: #15120d !important;
+}
+.header-logo-wrap,
+.footer-logo-wrap {
+  width: 220px;
+  height: 56px;
+}
+
+.header-logo-wrap img,
+.footer-logo-wrap img {
+  width: 220px;
+  height: 56px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* =====================================================
+   PROFESSIONAL CREAM NAVBAR SHADE
+   Google white se different, website cream se premium
+===================================================== */
+
+body.cream-theme {
+  --header-bg: rgba(247, 243, 234, 0.94);
+  --header-bg-scrolled: rgba(247, 243, 234, 0.98);
+  --header-border: rgba(120, 95, 55, 0.16);
+
+  --nav-text: rgba(21, 18, 13, 0.88);
+  --nav-muted: rgba(21, 18, 13, 0.68);
+  --nav-hover-bg: rgba(255, 138, 0, 0.08);
+
+  --dropdown-bg: rgba(250, 247, 239, 0.98);
+  --dropdown-text: #15120d;
+  --dropdown-muted: rgba(21, 18, 13, 0.58);
+
+  --social-bg: rgba(21, 18, 13, 0.045);
+  --social-hover-bg: rgba(255, 138, 0, 0.13);
+
+  --mobile-menu-bg: rgba(247, 243, 234, 0.98);
+}
+
+/* Navbar actual shade */
+body.cream-theme header {
+  background: var(--header-bg) !important;
+  box-shadow: 0 10px 35px rgba(21, 18, 13, 0.08) !important;
+}
+
+/* Scroll ke baad thora stronger professional look */
+body.cream-theme header.border-b {
+  background: var(--header-bg-scrolled) !important;
+  border-color: var(--header-border) !important;
+  box-shadow: 0 12px 40px rgba(21, 18, 13, 0.1) !important;
+}
+
+/* Logo same size dono modes me */
+.header-logo-wrap {
+  height: 56px;
+  width: 220px;
+}
+
+.header-logo-img {
+  height: 56px;
+  width: 220px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 640px) {
+  .header-logo-wrap,
+  .header-logo-img {
+    width: 185px;
+    height: 56px;
+  }
+}
+
+
+/* =====================================================
+   NAVBAR LOGO SIZE FIX
+   Logo2 and logo3 same height/width
+===================================================== */
+
+.header-logo-wrap {
+  width: 165px;
+  height: 54px;
+  min-width: 165px;
+  max-width: 165px;
+}
+
+.header-logo-img {
+  width: 165px !important;
+  height: 54px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  filter: none !important;
+  transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Hover par logo zoom na ho */
+.header-logo-wrap:hover .header-logo-img {
+  transform: none !important;
+}
+
+/* Mobile logo size */
+@media (max-width: 640px) {
+  .header-logo-wrap {
+    width: 150px;
+    height: 54px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .header-logo-img {
+    width: 150px !important;
+    height: 54px !important;
+  }
+}
+/* =====================================================
+   FINAL HEADER LOGO SIZE FIX
+   logo2 and logo3 same box, same height/width
+===================================================== */
+
+.header-logo-wrap {
+  width: 165px !important;
+  height: 54px !important;
+  min-width: 165px !important;
+  max-width: 165px !important;
+}
+
+.header-logo-img {
+  width: 165px !important;
+  height: 54px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  filter: none !important;
+}
+
+/* Black theme logo */
+.header-logo-dark {
+  transform: scale(1) !important;
+  transform-origin: left center !important;
+}
+
+/* Cream theme logo3 ko black logo ke size jaisa balance karo */
+.header-logo-cream {
+  transform: scale(0.92) !important;
+  transform-origin: left center !important;
+}
+
+/* Hover par logo size change na ho */
+.header-logo-wrap:hover .header-logo-img {
+  filter: none !important;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .header-logo-wrap {
+    width: 150px !important;
+    height: 54px !important;
+    min-width: 150px !important;
+    max-width: 150px !important;
+  }
+
+  .header-logo-img {
+    width: 150px !important;
+    height: 54px !important;
+  }
+
+  .header-logo-cream {
+    transform: scale(0.92) !important;
+  }
+}
+
+.navbar-logo img {
+  width: 300px;
+  height: auto;
+  background: transparent !important;
+  display: block;
+}
+
+/* =====================================================
+   FINAL FOOTER LOGO3 COLOR MATCH FIX
+   Sirf cream / white screen ke footer ke liye
+   Black screen bilkul affect nahi hogi
+===================================================== */
+
+body.cream-theme .site-footer {
+  --footer-bg-match-logo3: #f7f1e6;
+
+  --footer-heading: #15120d;
+  --footer-text: rgba(21, 18, 13, 0.82);
+  --footer-muted: rgba(21, 18, 13, 0.68);
+  --footer-soft: rgba(21, 18, 13, 0.55);
+
+  --footer-border: rgba(21, 18, 13, 0.12);
+  --footer-social-bg: rgba(255, 255, 255, 0.5);
+
+  --footer-glow-one: rgba(255, 138, 0, 0.06);
+  --footer-glow-two: rgba(21, 18, 13, 0.02);
+}
+
+/* Cream footer background logo3 ke background ke sath same */
+body.cream-theme .site-footer .bg-gradient-split {
+  background: #f7f1e6 !important;
+}
+
+/* Footer logo ke peeche same background */
+body.cream-theme .site-footer .footer-logo-wrap {
+  background: #f7f1e6 !important;
+}
+
+/* Logo image ka color/filter change na ho */
+.site-footer .footer-logo-wrap img {
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* Black theme/default me logo2 show */
+.site-footer .footer-logo-dark {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.site-footer .footer-logo-cream {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Cream theme me logo3 show */
+body.cream-theme .site-footer .footer-logo-dark {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+body.cream-theme .site-footer .footer-logo-cream {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Footer social icons cream theme */
+body.cream-theme .site-footer .footer-social-icon {
+  color: var(--footer-text) !important;
+  background: var(--footer-social-bg) !important;
+  border-color: var(--footer-border) !important;
+}
+
+body.cream-theme .site-footer .footer-social-icon:hover {
+  background: var(--brand-orange) !important;
+  color: #000000 !important;
+  border-color: transparent !important;
+}
+
+/* =====================================================
+   BUSINESS AUTOMATION IMAGE TEXT FIX
+   Sirf cream/white screen ke image overlay ke liye
+   Black screen bilkul same rahegi
+===================================================== */
+
+body.cream-theme img[src="/business-automation.jpg"] ~ div h3.text-white {
+  color: #ffffff !important;
+}
+
+/* Is image ke andar agar koi span/text-white ho to woh bhi white rahe */
+body.cream-theme img[src="/business-automation.jpg"] ~ div h3.text-white span {
+  color: #ffffff !important;
 }

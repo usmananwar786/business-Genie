@@ -93,105 +93,117 @@ function UX() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative isolate overflow-hidden bg-[#050505] px-0 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-28 lg:pt-36">
-        <img
-          src="/post-design-1.jpg"
-          alt="Content designer banner"
-          className="absolute inset-0 -z-30 h-full w-full object-cover opacity-45"
-        />
+  {/* Hero Section */}
+<section className="uiux-hero-light relative isolate overflow-hidden px-0 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-28 lg:pt-36">
+  {/* <img
+    src="/post-design-1.jpg"
+    alt="Content designer banner"
+    className="uiux-hero-bg-image absolute inset-0 -z-30 h-full w-full object-cover"
+  /> */}
 
-        <div className="absolute inset-0 -z-20 bg-black/75" />
-        <div className="absolute inset-0 -z-20 bg-gradient-to-b from-black/85 via-black/70 to-[#050505]" />
-        <div className="absolute inset-0 -z-20 bg-gradient-to-r from-black/80 via-black/55 to-black/80" />
+  <div
+    className="absolute inset-0 -z-20"
+    style={{ background: "var(--uiux-hero-overlay-1)" }}
+  />
 
-        <motion.div
-          className="absolute -left-32 top-20 -z-10 h-72 w-72 rounded-full bg-[var(--brand-orange)]/15 blur-[120px]"
-          animate={{
-            scale: [1, 1.12, 1],
-            opacity: [0.35, 0.7, 0.35],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+  <div
+    className="absolute inset-0 -z-20"
+    style={{ background: "var(--uiux-hero-overlay-2)" }}
+  />
 
-        <motion.div
-          className="absolute -right-32 bottom-10 -z-10 h-72 w-72 rounded-full bg-[var(--brand-orange)]/12 blur-[120px]"
-          animate={{
-            y: [0, -14, 0],
-            opacity: [0.25, 0.55, 0.25],
-          }}
-          transition={{
-            duration: 4.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+  <div
+    className="absolute inset-0 -z-20"
+    style={{ background: "var(--uiux-hero-overlay-3)" }}
+  />
 
-        <div className="container-x relative z-10">
+  <motion.div
+    className="absolute -left-32 top-20 -z-10 h-72 w-72 rounded-full bg-[var(--brand-orange)]/15 blur-[120px]"
+    animate={{
+      scale: [1, 1.12, 1],
+      opacity: [0.35, 0.7, 0.35],
+    }}
+    transition={{
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  />
+
+  <motion.div
+    className="absolute -right-32 bottom-10 -z-10 h-72 w-72 rounded-full bg-[var(--brand-orange)]/12 blur-[120px]"
+    animate={{
+      y: [0, -14, 0],
+      opacity: [0.25, 0.55, 0.25],
+    }}
+    transition={{
+      duration: 4.5,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  />
+
+  <div className="container-x relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="mx-auto max-w-4xl text-center"
+    >
+      <div className="mb-4 text-xs uppercase tracking-[0.28em] text-[var(--brand-orange)]">
+        Content Design
+      </div>
+
+      <h1 className="text-[34px] font-bold leading-tight text-[var(--uiux-hero-title)] sm:text-5xl lg:text-6xl">
+        Creative visuals built for{" "}
+        <span className="text-gradient-orange">
+          brands and conversions
+        </span>
+      </h1>
+
+      <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-[var(--uiux-hero-desc)] sm:text-base lg:text-lg">
+        Professional content designs, UI/UX visuals, social media posts,
+        banners, ad creatives, logo concepts and brand visuals that help
+        businesses look premium online.
+      </p>
+
+      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+        <Link
+          to="/contact"
+          className="btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 font-semibold text-black glow-orange transition-transform duration-300 hover:scale-[1.03]"
+        >
+          Start a Design Project
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+
+        <a
+          href="#creative-portfolio"
+          className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--uiux-hero-outline-border)] px-6 py-3.5 text-[var(--uiux-hero-outline-text)] transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-[var(--uiux-hero-outline-hover)] hover:text-[var(--brand-orange)]"
+        >
+          View Portfolio
+        </a>
+      </div>
+
+      <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+        {highlights.map((item, index) => (
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            key={item}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="mx-auto max-w-4xl text-center"
+            transition={{
+              delay: 0.2 + index * 0.08,
+              duration: 0.45,
+              ease: "easeOut",
+            }}
+            whileHover={{ y: -4 }}
+            className="rounded-2xl border border-[var(--uiux-hero-card-border)] bg-[var(--uiux-hero-card-bg)] px-3 py-3 text-center text-xs text-[var(--uiux-hero-card-text)] backdrop-blur-xl transition-all duration-300 hover:border-[var(--brand-orange)]/50 hover:bg-[var(--uiux-hero-card-hover)] hover:text-[var(--brand-orange)] sm:text-sm"
           >
-            <div className="mb-4 text-xs uppercase tracking-[0.28em] text-[var(--brand-orange)]">
-              Content Design
-            </div>
-
-            <h1 className="text-[34px] font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Creative visuals built for{" "}
-              <span className="text-gradient-orange">
-                brands and conversions
-              </span>
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base lg:text-lg">
-              Professional content designs, UI/UX visuals, social media posts,
-              banners, ad creatives, logo concepts and brand visuals that help
-              businesses look premium online.
-            </p>
-
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
-              <Link
-                to="/contact"
-                className="btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 font-semibold text-black glow-orange transition-transform duration-300 hover:scale-[1.03]"
-              >
-                Start a Design Project
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-
-              <a
-                href="#creative-portfolio"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-white transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-white/10 hover:text-[var(--brand-orange)]"
-              >
-                View Portfolio
-              </a>
-            </div>
-
-            <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
-              {highlights.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.2 + index * 0.08,
-                    duration: 0.45,
-                    ease: "easeOut",
-                  }}
-                  whileHover={{ y: -4 }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-3 text-center text-xs text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-[var(--brand-orange)]/50 hover:bg-white/[0.07] hover:text-[var(--brand-orange)] sm:text-sm"
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </div>
+            {item}
           </motion.div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </motion.div>
+  </div>
+</section>
 
       {/* Creative Portfolio */}
       <Section className="relative overflow-hidden">

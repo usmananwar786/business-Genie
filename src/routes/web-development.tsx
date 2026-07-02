@@ -155,7 +155,7 @@ function Web() {
         </div>
       </Section>
 
-      <Section className="!pt-0 relative overflow-hidden">
+      <Section className="web-flip-section !pt-0 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--brand-orange)]/5 to-transparent" />
         <div className="absolute -left-32 top-20 h-80 w-80 rounded-full bg-[var(--brand-teal)]/10 blur-[120px]" />
         <div className="absolute -right-32 bottom-20 h-80 w-80 rounded-full bg-[var(--brand-orange)]/10 blur-[120px]" />

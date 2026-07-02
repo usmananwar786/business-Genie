@@ -110,137 +110,144 @@ function DM() {
   return (
     <SiteLayout>
       {/* Video Hero */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#050505] pt-20">
-        {/* Yahan iframe background me set kiya hai */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <iframe
-            src="https://player.cloudinary.com/embed/?cloud_name=djry1d68x&public_id=digital-marketing-hero_d82hhc&autoplay=true&loop=true&muted=true&controls=false"
-            className="h-full w-full object-cover opacity-55 scale-105 border-0"
-            style={{ height: "100%", width: "100%", position: "absolute", top: 0, left: 0 }}
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+      {/* Video Hero */}
+<section className="dm-hero-light relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[var(--dm-hero-bg)] pt-20">
+  {/* Yahan iframe background me set kiya hai */}
+  <div className="absolute inset-0 z-0 pointer-events-none">
+    <iframe
+      src="https://player.cloudinary.com/embed/?cloud_name=djry1d68x&public_id=digital-marketing-hero_d82hhc&autoplay=true&loop=true&muted=true&controls=false"
+      className="dm-hero-video h-full w-full object-cover scale-105 border-0"
+      style={{
+        height: "100%",
+        width: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
+      }}
+      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+      allowFullScreen
+    ></iframe>
 
-          <div className="absolute inset-0 bg-[#050505]/62" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/45 via-[#050505]/45 to-[#050505]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/70 via-transparent to-[#050505]/70" />
-        </div>
+    <div className="absolute inset-0 bg-[var(--dm-hero-overlay-1)]" />
+    <div className="absolute inset-0 bg-[var(--dm-hero-overlay-2)]" />
+    <div className="absolute inset-0 bg-[var(--dm-hero-overlay-3)]" />
+  </div>
 
-        <motion.div
-          animate={{
-            x: [0, 35, 0],
-            y: [0, -25, 0],
-            scale: [1, 1.08, 1],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 -left-24 h-[420px] w-[420px] rounded-full bg-[var(--brand-orange)]/20 blur-[145px]"
-        />
+  <motion.div
+    animate={{
+      x: [0, 35, 0],
+      y: [0, -25, 0],
+      scale: [1, 1.08, 1],
+    }}
+    transition={{
+      duration: 14,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute top-20 -left-24 h-[420px] w-[420px] rounded-full bg-[var(--brand-orange)]/20 blur-[145px]"
+  />
 
-        <motion.div
-          animate={{
-            x: [0, -35, 0],
-            y: [0, 25, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-0 right-0 h-[460px] w-[460px] rounded-full bg-[var(--brand-orange)]/12 blur-[160px]"
-        />
+  <motion.div
+    animate={{
+      x: [0, -35, 0],
+      y: [0, 25, 0],
+      scale: [1, 1.1, 1],
+    }}
+    transition={{
+      duration: 16,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute bottom-0 right-0 h-[460px] w-[460px] rounded-full bg-[var(--brand-orange)]/12 blur-[160px]"
+  />
 
-        <div
-          className="absolute inset-0 opacity-[0.045]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px)",
-            backgroundSize: "82px 82px",
-          }}
-        />
+  <div
+    className="absolute inset-0 opacity-[var(--dm-hero-grid-opacity)]"
+    style={{
+      backgroundImage:
+        "linear-gradient(var(--dm-hero-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--dm-hero-grid-color) 1px, transparent 1px)",
+      backgroundSize: "82px 82px",
+    }}
+  />
 
-        <div className="relative container-x">
-          <div className="mx-auto max-w-5xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur-md"
-            >
-              <Megaphone className="h-3.5 w-3.5 text-[var(--brand-orange)]" />
-              Digital Marketing Growth Partner
-            </motion.div>
+  <div className="relative container-x">
+    <div className="mx-auto max-w-5xl text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55 }}
+        className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--dm-hero-badge-border)] bg-[var(--dm-hero-badge-bg)] px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-[var(--dm-hero-badge-text)] backdrop-blur-md"
+      >
+        <Megaphone className="h-3.5 w-3.5 text-[var(--brand-orange)]" />
+        Digital Marketing Growth Partner
+      </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.75 }}
-              className="mx-auto max-w-5xl text-[36px] sm:text-[46px] md:text-[58px] lg:text-[70px] font-semibold leading-[1.08] tracking-[-0.035em] text-white"
-            >
-              Grow your business with{" "}
-              <span className="text-gradient-orange">
-                performance marketing
-              </span>
-            </motion.h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 26 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1, duration: 0.75 }}
+        className="mx-auto max-w-5xl text-[36px] sm:text-[46px] md:text-[58px] lg:text-[70px] font-semibold leading-[1.08] tracking-[-0.035em] text-[var(--dm-hero-title)]"
+      >
+        Grow your business with{" "}
+        <span className="text-gradient-orange">
+          performance marketing
+        </span>
+      </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.65 }}
-              className="mx-auto mt-6 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-white/70"
-            >
-              We help businesses generate quality leads, improve online
-              visibility, track every conversion and scale campaigns across
-              Google, Meta, LinkedIn and digital platforms.
-            </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25, duration: 0.65 }}
+        className="mx-auto mt-6 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-[var(--dm-hero-desc)]"
+      >
+        We help businesses generate quality leads, improve online visibility,
+        track every conversion and scale campaigns across Google, Meta, LinkedIn
+        and digital platforms.
+      </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.42, duration: 0.65 }}
-              className="mt-8 flex flex-wrap justify-center gap-3"
-            >
-              <Link
-                to="/contact"
-                className="btn-shine inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 font-semibold text-black glow-orange transition-transform hover:scale-[1.03]"
-              >
-                Get Free Marketing Audit
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.42, duration: 0.65 }}
+        className="mt-8 flex flex-wrap justify-center gap-3"
+      >
+        <Link
+          to="/contact"
+          className="btn-shine inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 font-semibold text-black glow-orange transition-transform hover:scale-[1.03]"
+        >
+          Get Free Marketing Audit
+          <ArrowRight className="h-4 w-4" />
+        </Link>
 
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-white transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-white/5 hover:text-[var(--brand-orange)]"
-              >
-                Explore Services
-              </Link>
-            </motion.div>
+        <Link
+          to="/portfolio"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--dm-hero-outline-border)] px-6 py-3.5 text-[var(--dm-hero-outline-text)] transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-[var(--dm-hero-outline-hover)] hover:text-[var(--brand-orange)]"
+        >
+          Explore Services
+        </Link>
+      </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.58, duration: 0.65 }}
-              className="mx-auto mt-9 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
-            >
-              {["Google Ads", "Meta Ads", "Lead Generation"].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-white/[0.07]"
-                >
-                  <div className="flex items-center justify-center gap-2 text-sm font-semibold text-white">
-                    <CheckCircle2 className="h-4 w-4 text-[var(--brand-orange)]" />
-                    {item}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.58, duration: 0.65 }}
+        className="mx-auto mt-9 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
+      >
+        {["Google Ads", "Meta Ads", "Lead Generation"].map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl border border-[var(--dm-hero-card-border)] bg-[var(--dm-hero-card-bg)] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-[var(--dm-hero-card-hover)]"
+          >
+            <div className="flex items-center justify-center gap-2 text-sm font-semibold text-[var(--dm-hero-card-text)]">
+              <CheckCircle2 className="h-4 w-4 text-[var(--brand-orange)]" />
+              {item}
+            </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* Marketing Services Cards */}
       <Section>

@@ -123,146 +123,154 @@ function SEO() {
   return (
     <SiteLayout>
       {/* Video Header */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#050505] pt-20">
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="h-full w-full object-cover opacity-35 scale-105"
+     {/* Video Header */}
+<section
+  className="seo-hero-light relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-20"
+  style={{ background: "var(--seo-hero-bg)" }}
+>
+  <div className="absolute inset-0 z-0">
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="auto"
+      className="seo-hero-video h-full w-full object-cover scale-105"
+    >
+      <source src="/seo-hero.mp4" type="video/mp4" />
+    </video>
+
+    <div
+      className="absolute inset-0"
+      style={{ background: "var(--seo-hero-overlay-1)" }}
+    />
+
+    <div
+      className="absolute inset-0"
+      style={{ background: "var(--seo-hero-overlay-2)" }}
+    />
+
+    <div
+      className="absolute inset-0"
+      style={{ background: "var(--seo-hero-overlay-3)" }}
+    />
+  </div>
+
+  <motion.div
+    animate={{
+      x: [0, 35, 0],
+      y: [0, -25, 0],
+      scale: [1, 1.08, 1],
+    }}
+    transition={{
+      duration: 14,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute top-20 -left-24 h-[420px] w-[420px] rounded-full bg-[var(--brand-orange)]/20 blur-[145px]"
+  />
+
+  <motion.div
+    animate={{
+      x: [0, -35, 0],
+      y: [0, 25, 0],
+      scale: [1, 1.1, 1],
+    }}
+    transition={{
+      duration: 16,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute bottom-0 right-0 h-[460px] w-[460px] rounded-full bg-[var(--brand-orange)]/12 blur-[160px]"
+  />
+
+  <div
+    className="absolute inset-0 opacity-[var(--seo-hero-grid-opacity)]"
+    style={{
+      backgroundImage:
+        "linear-gradient(var(--seo-hero-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--seo-hero-grid-color) 1px, transparent 1px)",
+      backgroundSize: "82px 82px",
+    }}
+  />
+
+  <div className="relative container-x">
+    <div className="mx-auto max-w-5xl text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55 }}
+        className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--seo-hero-badge-border)] bg-[var(--seo-hero-badge-bg)] px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-[var(--seo-hero-badge-text)] backdrop-blur-md"
+      >
+        <Search className="h-3.5 w-3.5 text-[var(--brand-orange)]" />
+        Professional SEO Services
+      </motion.div>
+
+      <motion.h1
+        initial={{ opacity: 0, y: 26 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1, duration: 0.75 }}
+        className="mx-auto max-w-5xl text-[36px] sm:text-[46px] md:text-[58px] lg:text-[70px] font-semibold leading-[1.08] tracking-[-0.035em] text-[var(--seo-hero-title)]"
+      >
+        Build long-term growth with{" "}
+        <span className="text-gradient-orange">
+          professional SEO
+        </span>
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25, duration: 0.65 }}
+        className="mx-auto mt-6 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-[var(--seo-hero-desc)]"
+      >
+        We improve your website visibility with technical SEO, keyword
+        research, on-page optimization, local SEO, content strategy and clear
+        monthly reporting.
+      </motion.p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.42, duration: 0.65 }}
+        className="mt-8 flex flex-wrap justify-center gap-3"
+      >
+        <Link
+          to="/contact"
+          className="btn-shine inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 font-semibold text-black glow-orange transition-transform hover:scale-[1.03]"
+        >
+          Free SEO Audit
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+
+        <Link
+          to="/portfolio"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--seo-hero-outline-border)] px-6 py-3.5 text-[var(--seo-hero-outline-text)] transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-[var(--seo-hero-outline-hover)] hover:text-[var(--brand-orange)]"
+        >
+          Explore Services
+        </Link>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.58, duration: 0.65 }}
+        className="mx-auto mt-9 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
+      >
+        {heroPoints.map((item) => (
+          <div
+            key={item}
+            className="rounded-2xl border border-[var(--seo-hero-card-border)] bg-[var(--seo-hero-card-bg)] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-[var(--seo-hero-card-hover)]"
           >
-            <source src="/seo-hero.mp4" type="video/mp4" />
-          </video>
-
-          {/* SEO Banner Background */}
-          <img
-            src="/seo-banner.jpg"
-            alt="SEO banner background"
-            className="absolute inset-0 h-full w-full object-cover opacity-50"
-          />
-
-          <div className="absolute inset-0 bg-[#050505]/62" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/35 via-[#050505]/48 to-[#050505]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/75 via-[#050505]/15 to-[#050505]/75" />
-        </div>
-
-        <motion.div
-          animate={{
-            x: [0, 35, 0],
-            y: [0, -25, 0],
-            scale: [1, 1.08, 1],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 -left-24 h-[420px] w-[420px] rounded-full bg-[var(--brand-orange)]/20 blur-[145px]"
-        />
-
-        <motion.div
-          animate={{
-            x: [0, -35, 0],
-            y: [0, 25, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-0 right-0 h-[460px] w-[460px] rounded-full bg-[var(--brand-teal)]/10 blur-[160px]"
-        />
-
-        <div
-          className="absolute inset-0 opacity-[0.045]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px)",
-            backgroundSize: "82px 82px",
-          }}
-        />
-
-        <div className="relative container-x">
-          <div className="mx-auto max-w-5xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-white/80 backdrop-blur-md"
-            >
-              <Search className="h-3.5 w-3.5 text-[var(--brand-orange)]" />
-              Professional SEO Services
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.75 }}
-              className="mx-auto max-w-5xl text-[36px] sm:text-[46px] md:text-[58px] lg:text-[70px] font-semibold leading-[1.08] tracking-[-0.035em] text-white"
-            >
-              Build long-term growth with{" "}
-              <span className="text-gradient-orange">
-                professional SEO
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.65 }}
-              className="mx-auto mt-6 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-white/70"
-            >
-              We improve your website visibility with technical SEO, keyword
-              research, on-page optimization, local SEO, content strategy and
-              clear monthly reporting.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.42, duration: 0.65 }}
-              className="mt-8 flex flex-wrap justify-center gap-3"
-            >
-              <Link
-                to="/contact"
-                className="btn-shine inline-flex items-center gap-2 rounded-full bg-gradient-orange px-6 py-3.5 font-semibold text-black glow-orange transition-transform hover:scale-[1.03]"
-              >
-                Free SEO Audit
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3.5 text-white transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-white/5 hover:text-[var(--brand-orange)]"
-              >
-                Explore Services
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.58, duration: 0.65 }}
-              className="mx-auto mt-9 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
-            >
-              {heroPoints.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 backdrop-blur-md transition-all duration-300 hover:border-[var(--brand-orange)]/60 hover:bg-white/[0.07]"
-                >
-                  <div className="flex items-center justify-center gap-2 text-sm font-semibold text-white">
-                    <CheckCircle2 className="h-4 w-4 text-[var(--brand-orange)]" />
-                    {item}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
+            <div className="flex items-center justify-center gap-2 text-sm font-semibold text-[var(--seo-hero-card-text)]">
+              <CheckCircle2 className="h-4 w-4 text-[var(--brand-orange)]" />
+              {item}
+            </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* 3 SEO Graphic Cards */}
       <Section>

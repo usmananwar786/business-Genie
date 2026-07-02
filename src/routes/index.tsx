@@ -164,7 +164,7 @@ function Counter({
 
 function Hero() {
   return (
-    <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-16 bg-[#050505]">
+    <section className="home-hero-light relative min-h-[92vh] flex items-center overflow-hidden pt-16 bg-[var(--home-hero-bg)]">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -173,15 +173,28 @@ function Hero() {
           muted
           playsInline
           preload="auto"
-          className="h-full w-full object-cover opacity-60 scale-105"
+          className="home-hero-video h-full w-full object-cover scale-105"
         >
-          {/* YAHAN AAPKA NAYA CLOUDINARY LINK LAG GAYA HAI */}
-          <source src="https://res.cloudinary.com/djry1d68x/video/upload/hero-bg_uivghf.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/djry1d68x/video/upload/hero-bg_uivghf.mp4"
+            type="video/mp4"
+          />
         </video>
 
-        <div className="absolute inset-0 bg-[#050505]/55" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-[#050505]/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505]" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--home-hero-overlay-1)" }}
+        />
+
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--home-hero-overlay-2)" }}
+        />
+
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--home-hero-overlay-3)" }}
+        />
       </div>
 
       {/* Slow Orange Glow */}
@@ -215,22 +228,22 @@ function Hero() {
 
       {/* Soft Grid */}
       <div
-        className="absolute inset-0 opacity-[0.045]"
+        className="absolute inset-0"
         style={{
+          opacity: "var(--home-hero-grid-opacity)",
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.45) 1px, transparent 1px)",
+            "linear-gradient(var(--home-hero-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--home-hero-grid-color) 1px, transparent 1px)",
           backgroundSize: "82px 82px",
         }}
       />
 
       <div className="relative container-x grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
-        {/* ... baqi ka sara inner code pehle jaisa he same rahega ... */}
         <div>
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-[11px] md:text-xs uppercase tracking-[0.22em] text-white/80 hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/50 transition-all duration-300 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--home-hero-badge-border)] bg-[var(--home-hero-badge-bg)] text-[11px] md:text-xs uppercase tracking-[0.22em] text-[var(--home-hero-badge-text)] hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/50 transition-all duration-300 mb-6"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Business Automation Partner
@@ -240,18 +253,18 @@ function Hero() {
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.75 }}
-            className="max-w-4xl text-[34px] sm:text-[42px] md:text-[52px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.12] tracking-[-0.025em] text-white"
+            className="max-w-4xl text-[34px] sm:text-[42px] md:text-[52px] lg:text-[58px] xl:text-[64px] font-semibold leading-[1.12] tracking-[-0.025em] text-[var(--home-hero-title)]"
           >
             Smart Solutions for{" "}
-            <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+            <span className="text-[var(--home-hero-title)] transition-colors duration-300 hover:text-[var(--brand-orange)]">
               ERP
             </span>
             ,{" "}
-            <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+            <span className="text-[var(--home-hero-title)] transition-colors duration-300 hover:text-[var(--brand-orange)]">
               HRMS
             </span>{" "}
             and{" "}
-            <span className="text-white transition-colors duration-300 hover:text-[var(--brand-orange)]">
+            <span className="text-[var(--home-hero-title)] transition-colors duration-300 hover:text-[var(--brand-orange)]">
               Digital Marketing
             </span>
           </motion.h1>
@@ -260,11 +273,11 @@ function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.65 }}
-            className="mt-6 text-sm sm:text-base md:text-lg text-white/70 max-w-2xl leading-relaxed"
+            className="mt-6 text-sm sm:text-base md:text-lg text-[var(--home-hero-desc)] max-w-2xl leading-relaxed"
           >
-          Business Genie Consulting helps businesses streamline operations
-              accelerate transformation, achieve sustainable growth 
-              innovative technology and consulting solutions.
+            Business Genie Consulting helps businesses streamline operations
+            accelerate transformation, achieve sustainable growth innovative
+            technology and consulting solutions.
           </motion.p>
 
           <motion.div
@@ -283,7 +296,7 @@ function Hero() {
 
             <Link
               to="/portfolio"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/60 hover:bg-white/5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-[var(--home-hero-outline-border)] text-[var(--home-hero-outline-text)] hover:text-[var(--brand-orange)] hover:border-[var(--brand-orange)]/60 hover:bg-[var(--home-hero-outline-hover)] transition-all duration-300"
             >
               Explore services
             </Link>
@@ -296,18 +309,28 @@ function Hero() {
             className="mt-9 grid sm:grid-cols-3 gap-3 max-w-2xl"
           >
             {[
-              ["ERP Systems", "Accounts, Sales & Purchase, Inventory, Production & Reporting"],
-              ["HRMS Automation", " Recruitment, Employee Records, Attendance & Payroll"],
-              ["Digital Marketing", "SEO,  Google Ads, Lead Generation, and Digital Growth Solutions"],
+              [
+                "ERP Systems",
+                "Accounts, Sales & Purchase, Inventory, Production & Reporting",
+              ],
+              [
+                "HRMS Automation",
+                "Recruitment, Employee Records, Attendance & Payroll",
+              ],
+              [
+                "Digital Marketing",
+                "SEO, Google Ads, Lead Generation, and Digital Growth Solutions",
+              ],
             ].map(([title, text]) => (
               <div
                 key={title}
-                className="group rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-4 backdrop-blur-md hover:border-[var(--brand-orange)]/60 hover:bg-white/[0.07] transition-all duration-300"
+                className="group rounded-2xl border border-[var(--home-hero-card-border)] bg-[var(--home-hero-card-bg)] px-5 py-4 backdrop-blur-md hover:border-[var(--brand-orange)]/60 hover:bg-[var(--home-hero-card-hover)] transition-all duration-300"
               >
-                <div className="text-sm font-semibold text-white group-hover:text-[var(--brand-orange)] transition-colors duration-300">
+                <div className="text-sm font-semibold text-[var(--home-hero-card-title)] group-hover:text-[var(--brand-orange)] transition-colors duration-300">
                   {title}
                 </div>
-                <div className="mt-1 text-xs leading-relaxed text-white/55">
+
+                <div className="mt-1 text-xs leading-relaxed text-[var(--home-hero-card-desc)]">
                   {text}
                 </div>
               </div>
@@ -318,7 +341,7 @@ function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.72, duration: 0.65 }}
-            className="mt-8 flex flex-wrap gap-5 text-sm text-white/65"
+            className="mt-8 flex flex-wrap gap-5 text-sm text-[var(--home-hero-small-text)]"
           >
             {[
               "Clean Implementation",
@@ -329,7 +352,7 @@ function Hero() {
                 key={item}
                 className="group flex items-center gap-2 hover:text-[var(--brand-orange)] transition-colors duration-300"
               >
-                <CheckCircle2 className="h-4 w-4 text-white/70 group-hover:text-[var(--brand-orange)] transition-colors duration-300" />
+                <CheckCircle2 className="h-4 w-4 text-[var(--home-hero-check)] group-hover:text-[var(--brand-orange)] transition-colors duration-300" />
                 {item}
               </div>
             ))}
@@ -342,21 +365,26 @@ function Hero() {
             initial={{ opacity: 0, x: 45 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.35, duration: 0.65 }}
-            className="absolute top-0 right-0 w-80 rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
+            className="absolute top-0 right-0 w-80 rounded-3xl border border-[var(--home-hero-floating-border)] bg-[var(--home-hero-floating-bg)] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
           >
             <div className="flex items-center justify-between mb-4">
               <div>
-                <div className="text-xs text-white/50 uppercase tracking-wider">
+                <div className="text-xs text-[var(--home-hero-floating-muted)] uppercase tracking-wider">
                   ERP Control
                 </div>
-                <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
+
+                <div className="text-sm font-semibold text-[var(--home-hero-floating-title)] hover:text-[var(--brand-orange)] transition-colors">
                   Business Dashboard
                 </div>
               </div>
+
               <div className="h-2.5 w-2.5 rounded-full bg-[var(--brand-orange)] animate-pulse" />
             </div>
 
-            <div className="text-4xl font-bold text-white">$284,910</div>
+            <div className="text-4xl font-bold text-[var(--home-hero-floating-title)]">
+              $284,910
+            </div>
+
             <div className="text-xs text-[var(--brand-orange)] mt-1">
               ▲ 24.6% monthly growth
             </div>
@@ -376,19 +404,22 @@ function Hero() {
             initial={{ opacity: 0, y: 45 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.65 }}
-            className="absolute top-48 left-0 w-72 rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
+            className="absolute top-48 left-0 w-72 rounded-3xl border border-[var(--home-hero-floating-border)] bg-[var(--home-hero-floating-bg)] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
             style={{ animationDelay: "1s" }}
           >
             <div className="flex items-center gap-3">
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-orange text-black">
                 <Users className="h-5 w-5" />
               </div>
+
               <div>
-                <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
+                <div className="text-sm font-semibold text-[var(--home-hero-floating-title)] hover:text-[var(--brand-orange)] transition-colors">
                   HRMS Automation
                 </div>
-                <div className="text-xs text-white/55">
-Recruitment, Employee Records, Attendance & Payroll                </div>
+
+                <div className="text-xs text-[var(--home-hero-floating-muted)]">
+                  Recruitment, Employee Records, Attendance & Payroll
+                </div>
               </div>
             </div>
 
@@ -398,8 +429,14 @@ Recruitment, Employee Records, Attendance & Payroll                </div>
                 ["Payroll", "Auto"],
                 ["Reports", "Live"],
               ].map(([k, v]) => (
-                <div key={k} className="bg-white/5 rounded-lg py-2">
-                  <div className="text-[10px] text-white/50">{k}</div>
+                <div
+                  key={k}
+                  className="rounded-lg py-2 bg-[var(--home-hero-mini-bg)]"
+                >
+                  <div className="text-[10px] text-[var(--home-hero-floating-muted)]">
+                    {k}
+                  </div>
+
                   <div className="text-sm font-bold text-[var(--brand-orange)]">
                     {v}
                   </div>
@@ -412,30 +449,35 @@ Recruitment, Employee Records, Attendance & Payroll                </div>
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.72, duration: 0.65 }}
-            className="absolute bottom-0 right-8 w-72 rounded-3xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
+            className="absolute bottom-0 right-8 w-72 rounded-3xl border border-[var(--home-hero-floating-border)] bg-[var(--home-hero-floating-bg)] p-6 backdrop-blur-xl hover:border-[var(--brand-orange)]/60 transition-all duration-300 animate-float-slow"
             style={{ animationDelay: "2s" }}
           >
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs text-white/50 uppercase tracking-wider">
+                <div className="text-xs text-[var(--home-hero-floating-muted)] uppercase tracking-wider">
                   Marketing Growth
                 </div>
-                <div className="text-sm font-semibold text-white hover:text-[var(--brand-orange)] transition-colors">
+
+                <div className="text-sm font-semibold text-[var(--home-hero-floating-title)] hover:text-[var(--brand-orange)] transition-colors">
                   Digital Performance
                 </div>
               </div>
+
               <TrendingUp className="h-5 w-5 text-[var(--brand-orange)]" />
             </div>
 
-            <div className="mt-4 text-5xl font-bold text-white">
-              4.8<span className="text-lg text-white/45">x</span>
+            <div className="mt-4 text-5xl font-bold text-[var(--home-hero-floating-title)]">
+              4.8
+              <span className="text-lg text-[var(--home-hero-floating-muted)]">
+                x
+              </span>
             </div>
 
-            <div className="mt-4 h-2.5 bg-white/10 rounded-full overflow-hidden">
+            <div className="mt-4 h-2.5 rounded-full overflow-hidden bg-[var(--home-hero-mini-bg)]">
               <div className="h-full bg-gradient-orange w-[88%]" />
             </div>
 
-            <div className="mt-3 text-[11px] text-white/55">
+            <div className="mt-3 text-[11px] text-[var(--home-hero-floating-muted)]">
               SEO • Paid Ads • Leads • Conversion Tracking
             </div>
           </motion.div>
@@ -446,12 +488,11 @@ Recruitment, Employee Records, Attendance & Payroll                </div>
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.15 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-xs flex flex-col items-center gap-2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[var(--home-hero-scroll)] text-xs flex flex-col items-center gap-2"
       >
-        <span className="hover:text-[var(--brand-orange)] transition-colors duration-300">
-        
-        </span>
-        <div className="h-8 w-px bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+        <span className="hover:text-[var(--brand-orange)] transition-colors duration-300"></span>
+
+        <div className="h-8 w-px bg-gradient-to-b from-[var(--home-hero-scroll)] to-transparent animate-pulse" />
       </motion.div>
     </section>
   );
